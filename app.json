@@ -1,12 +1,40 @@
 {
-  "pages":[
-    "pages/index/index"
+  "pages": [
+    "pages/index/index",
+    "pages/profile/profile",
+    "pages/publish/publish"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "好社区任务平台",
-    "navigationBarTextStyle":"black"
+    "navigationBarTitleText": "HAO社区",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#999",
+    "backgroundColor": "#fff",
+    "borderStyle": "white",
+    "selectedColor": "#6782F2",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "selectedIconPath": "/images/house.selected.png",
+        "text": "社区",
+        "iconPath": "/images/house.normal.png"
+      },
+      {
+        "pagePath": "pages/publish/publish",
+        "selectedIconPath": "/images/pub.selected.png",
+        "text": "发布",
+        "iconPath": "/images/pub.normal.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "selectedIconPath": "/images/person.fill.selected.png",
+        "text": "我的",
+        "iconPath": "/images/person.fill.normal.png"
+      }
+    ]
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"
