@@ -27,3 +27,54 @@ Page {
   font-weight: 600;
   color: var(--fontColor);
 }
+
+.flexContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.normalForm {
+  margin-top: 30rpx;
+}
+
+.formItem {
+  height: 100rpx;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.formItem .h4Text {
+  margin-left: 2%;
+  width: 18%;
+  text-align: right;
+  margin-right: 2%;
+}
+
+.formItem .input {
+  border-bottom: 1px solid var(--lightPurpleColor3);
+  font-size: medium;
+  width: 74%;
+  color: var(--fontColor);
+}
+
+.formItem .pickerPreview {
+  border-bottom: 1px solid var(--lightPurpleColor3);
+  font-size: medium;
+  width: 74%;
+  color: var(--fontColor);
+}
+
+.submitButton {
+  background-color: var(--lightPurpleColor1);
+  color: white;
+  width: 100%;
+  margin-top: 10rpx;
+  font-size: medium;
+}
+
+.submitButtonHover {
+  background-color: var(--purpleColor);
+}

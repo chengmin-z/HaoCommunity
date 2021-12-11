@@ -1,0 +1,17 @@
+<!--pages/login/login.wxml-->
+<view class="flexContainer">
+  <form class="normalForm" bindsubmit="handleLogin">
+    <custom-comp>
+    <view class="formItem">
+      <view class="h4Text">用户名:</view>
+      <input class="input" name="username" placeholder="请输入用户名"/>
+    </view>
+    <view class="formItem">
+      <view class="h4Text">密码:</view>
+      <input class="input" type="password" name="password" placeholder="请输入密码"/>
+    </view>
+    </custom-comp>
+    <button class="submitButton" hover-class="submitButtonHover" form-type="submit">登录</button>
+  </form>
+</view>
+

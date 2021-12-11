@@ -1,4 +1,6 @@
 // pages/register/register.js
+let host = getApp().globalData.host
+
 Page({
 
   /**
@@ -30,27 +32,57 @@ Page({
     // check
     // combine
     let city = this.data.region[0] + ',' + this.data.region[1] + ',' + this.data.region[2]
-    let data = {
-      username: inputData.username,
-      password: inputData.password,
-      realname: inputData.realname,
-      idnumber: inputData.idnumber,
-      phone: inputData.phone,
-      description: inputData.description,
-      community: inputData.community,
-      idtype: this.data.idtype,
-      city: city,
-    }
+    delete inputData['passwordRe']
+    inputData['idtype'] = this.data.idtype
+    inputData['city'] = city
+    let that = this
+    wx.getUserInfo({
+      lang: 'HAO 社区想获取您的头像信息',
+      withCredentials: true,
+      success: (res) => {
+        console.log(res)
+        inputData['avatar'] = res.userInfo.avatarUrl
+        that.sendRegisterRequset(inputData)
+      },
+      fail: (res) => {
+        wx.showToast({
+          title: '获取用户信息失败',
+          icon: 'none'
+        })
+      },
+      complete: (res) => {},
+    })
+  },
+
+  sendRegisterRequset: function(data) {
     console.log(data)
     wx.request({
-      url: 'http://8.141.51.178:8000/home/register/',
+      url: host + '/home/register/',
       data: data,
       method: 'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },
       success (res) {
-        console.log(res.data)
+        let data = res.data
+        let code = data.status
+        if (code == 200) {
+          wx.showToast({
+            title: '注册成功',
+            icon: 'success'
+          })
+        } else {
+          wx.showToast({
+            title: data.msg,
+            icon: 'none'
+          })
+        }
+      },
+      fail (res) {
+        wx.showToast({
+          title: '注册失败, 请稍后重试',
+          icon: 'none'
+        })
       }
     })
   },
@@ -65,7 +97,7 @@ Page({
   bindIdTypeChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
-      idType: e.detail.value
+      idtype: e.detail.value
     })
   },
 

@@ -2,6 +2,6 @@
 App({
   onLaunch() {},
   globalData: {
-    userInfo: null
+    host: 'http://8.141.51.178:8000'
   }
 })

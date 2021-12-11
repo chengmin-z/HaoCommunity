@@ -34,5 +34,12 @@ Page({
     wx.navigateTo({
       url: '/pages/register/register',
     })
+  },
+
+  handleLogin: function() {
+    console.log('Login Button Tap')
+    wx.navigateTo({
+      url: '/pages/login/login',
+    })
   }
 })

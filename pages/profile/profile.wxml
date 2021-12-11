@@ -9,7 +9,7 @@
     </view>
   </view>
   <view class="profileOperator">
-    <button class="loginButton" hover-class='loginButtonHover'>登录</button>
+    <button class="loginButton" hover-class='loginButtonHover' bindtap="handleLogin">登录</button>
     <button class="registerButton" bindtap="handleRegister">注册</button>
   </view>
 </view>

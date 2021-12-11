@@ -1,50 +1,52 @@
 <!--pages/register/register.wxml-->
-<form bindsubmit="handleRegister">
-  <custom-comp>
-  <view class="formItem">
-    <view class="h4Text">用户名:</view>
-    <input class="input" name="username" placeholder="请输入用户名"/>
-  </view>
-  <view class="formItem">
-    <view class="h4Text">密码:</view>
-    <input class="input" type="password" name="password" placeholder="请输入密码"/>
-  </view>
-  <view class="formItem">
-    <view class="h4Text">密码确认:</view>
-    <input class="input" type="password" name="passwordRe" placeholder="请确认密码"/>
-  </view>
-  <view class="formItem">
-    <view class="h4Text">真实姓名:</view>
-    <input class="input" name="realname" placeholder="请输入真实姓名"/>
-  </view>
-  <view class="formItem">
-    <view class="h4Text">证件类型:</view>
-    <picker class="pickerPreview" bindchange="bindIdTypeChange" value="{{index}}" range="{{idtypeArray}}">
-        {{idtypeArray[idtype]}}
-    </picker>
-  </view>
-  <view class="formItem">
-    <view class="h4Text">证件号码:</view>
-    <input class="input" name="idnumber" placeholder="请输入证件号码"/>
-  </view>
-  <view class="formItem">
-    <view class="h4Text">手机号码:</view>
-    <input class="input" type="number" maxlength="11" name="phone" placeholder="请输入手机号码"/>
-  </view>
-  <view class="formItem">
-    <view class="h4Text">所在城市:</view>
-    <picker class="pickerPreview" mode="region" bindchange="bindRegionChange" value="{{region}}">  
-        {{region[0]}} - {{region[1]}} - {{region[2]}}
-    </picker>
-  </view>
-  <view class="formItem">
-    <view class="h4Text">社区名称:</view>
-    <input class="input" name="community" placeholder="请输入社区名称"/>
-  </view>
-  <view class="formItem">
-    <view class="h4Text">用户简介:</view>
-    <input class="input" name="description" placeholder="简单介绍一下自己吧"/>
-  </view>
-  </custom-comp>
-  <button class="submitButton" hover-class="submitButtonHover" form-type="submit">注册</button>
-</form>
+<view class="flexContainer">
+  <form class="normalForm" bindsubmit="handleRegister">
+    <custom-comp>
+    <view class="formItem">
+      <view class="h4Text">用户名:</view>
+      <input class="input" name="username" placeholder="请输入用户名"/>
+    </view>
+    <view class="formItem">
+      <view class="h4Text">密码:</view>
+      <input class="input" type="password" name="password" placeholder="请输入密码"/>
+    </view>
+    <view class="formItem">
+      <view class="h4Text">密码确认:</view>
+      <input class="input" type="password" name="passwordRe" placeholder="请确认密码"/>
+    </view>
+    <view class="formItem">
+      <view class="h4Text">真实姓名:</view>
+      <input class="input" name="realname" placeholder="请输入真实姓名"/>
+    </view>
+    <view class="formItem">
+      <view class="h4Text">证件类型:</view>
+      <picker class="pickerPreview" bindchange="bindIdTypeChange" value="{{index}}" range="{{idtypeArray}}">
+          {{idtypeArray[idtype]}}
+      </picker>
+    </view>
+    <view class="formItem">
+      <view class="h4Text">证件号码:</view>
+      <input class="input" name="idnumber" placeholder="请输入证件号码"/>
+    </view>
+    <view class="formItem">
+      <view class="h4Text">手机号码:</view>
+      <input class="input" type="number" maxlength="11" name="phone" placeholder="请输入手机号码"/>
+    </view>
+    <view class="formItem">
+      <view class="h4Text">所在城市:</view>
+      <picker class="pickerPreview" mode="region" bindchange="bindRegionChange" value="{{region}}">  
+          {{region[0]}} - {{region[1]}} - {{region[2]}}
+      </picker>
+    </view>
+    <view class="formItem">
+      <view class="h4Text">社区名称:</view>
+      <input class="input" name="community" placeholder="请输入社区名称"/>
+    </view>
+    <view class="formItem">
+      <view class="h4Text">用户简介:</view>
+      <input class="input" name="description" placeholder="简单介绍一下自己吧"/>
+    </view>
+    </custom-comp>
+    <button class="submitButton" hover-class="submitButtonHover" form-type="submit">注册</button>
+  </form>
+</view>
