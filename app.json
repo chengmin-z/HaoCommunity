@@ -1,14 +1,17 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/profile/profile",
+    "pages/register/register",
+
+    "pages/index/index",
     "pages/publish/publish"
   ],
   "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationStyle": "default",
+    "navigationBarTextStyle": "white",
     "navigationBarTitleText": "HAO社区",
-    "navigationBarTextStyle": "black"
+    "navigationBarBackgroundColor": "#6782F2",
+    "enablePullDownRefresh": true
   },
   "tabBar": {
     "color": "#999",
@@ -37,5 +40,6 @@
     ]
   },
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "darkmode": false
 }

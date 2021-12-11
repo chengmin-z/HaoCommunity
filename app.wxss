@@ -1,10 +1,29 @@
 /**app.wxss**/
-.container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 200rpx 0;
-  box-sizing: border-box;
-} 
+Page {
+  --themeColor: #6782F2;
+  --fontColor: #555555;
+  --grayColor: #999999;
+  --purpleColor: #6C87F5;
+  --lightPurpleColor1: #95A7F2;
+  --lightPurpleColor2: #96A5E5;
+  --lightPurpleColor3: #D2DAF7;
+}
+
+.h2Text {
+  font-size: larger;
+  font-weight: 600;
+  color: var(--fontColor);
+}
+
+.h3Text {
+  font-size: large;
+  font-weight: 400;
+  color: var(--fontColor);
+}
+
+.h4Text {
+  font-size: medium;
+  font-weight: normal;
+  font-weight: 600;
+  color: var(--fontColor);
+}

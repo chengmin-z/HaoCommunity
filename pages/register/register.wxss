@@ -1,0 +1,40 @@
+/* pages/register/register.wxss */
+.formItem {
+  height: 100rpx;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.formItem .h4Text {
+  margin-left: 2%;
+  width: 18%;
+  text-align: right;
+  margin-right: 2%;
+}
+
+.formItem .input {
+  border-bottom: 1px solid var(--lightPurpleColor3);
+  font-size: medium;
+  width: 74%;
+  color: var(--fontColor);
+}
+
+.formItem .pickerPreview {
+  border-bottom: 1px solid var(--lightPurpleColor3);
+  font-size: medium;
+  width: 74%;
+  color: var(--fontColor);
+}
+
+.submitButton {
+  background-color: var(--lightPurpleColor1);
+  color: white;
+  font-weight: bold;
+  font-size: medium;
+}
+
+.submitButtonHover {
+  background-color: var(--purpleColor);
+}

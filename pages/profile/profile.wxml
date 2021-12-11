@@ -1,1 +1,15 @@
 <!--pages/profile/profile.wxml-->
+<view class="profileView">
+  <view class="profileInfoView">
+    <view class="h2Text">
+      暂未登录
+    </view>
+    <view class="avatar">
+      <image class="image" mode="scaleToFill" src="/images/person.crop.circle.png"></image>
+    </view>
+  </view>
+  <view class="profileOperator">
+    <button class="loginButton" hover-class='loginButtonHover'>登录</button>
+    <button class="registerButton" bindtap="handleRegister">注册</button>
+  </view>
+</view>
