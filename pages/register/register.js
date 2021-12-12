@@ -1,8 +1,74 @@
+import wxValidate from '../../utils/wxValidate.js'
+
 // pages/register/register.js
 let host = getApp().globalData.host
+let globalData = getApp().globalData
 
 Page({
-
+  initValidate: function() {
+    this.validate = new wxValidate({
+        username: {
+          required: true,
+          minlength: 6
+        },
+        password: {
+          required: true,
+          minlength: 6
+        },
+        passwordRe: {
+          required: true,
+          equalTo: 'password'
+        },
+        realname: {
+          required: true,
+        },
+        idnumber: {
+          required: true,
+        },
+        phone: {
+          required: true,
+          tel: true
+        },
+        community: {
+          required: true,
+        }
+      }, {
+        username: {
+          required: '请输入用户名称',
+          rangelength: '用户名称至少为6位字符'
+        },
+        password: {
+          required: '请输入密码',
+          minlength: '密码长度至少为6位'
+        },
+        passwordRe: {
+          required: '请输入确认密码',
+          equalTo: '确认密码输入不一致'
+        },
+        realname: {
+          required: '请输入真实姓名',
+        },
+        idnumber: {
+          required: '请输入证件号码',
+        },
+        phone: {
+          required: '请输入手机号码',
+          tel: '请输入11位手机号码'
+        },
+        community: {
+          required: '请输入社区名称',
+        }
+    })
+    this.validateIdNum = new wxValidate({
+        idnumber: {
+          idcard: true
+        }
+      }, {
+        idnumber: {
+          idcard: '请输入18位居民身份证号',
+        }
+    })
+  },
   /**
    * Page initial data
    */
@@ -16,7 +82,7 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-
+    this.initValidate()
   },
 
   /**
@@ -28,17 +94,36 @@ Page({
 
   handleRegister: function(e) {
     console.log(e.detail.value)
-    let inputData = e.detail.value
+
     // check
+    if (!this.validate.checkForm(e)) {
+      const error = this.validate.errorList[0];
+      console.log(error)
+      wx.showToast({
+        title: `${error.msg}`,
+        icon: 'none'
+      })
+      return false
+    }
+    if(this.data.idtype == 0 && !this.validateIdNum.checkForm(e)) {
+      const error = this.validateIdNum.errorList[0];
+      console.log(error)
+      wx.showToast({
+        title: `${error.msg}`,
+        icon: 'none'
+      })
+      return false
+    }
+
     // combine
+    let inputData = e.detail.value
     let city = this.data.region[0] + ',' + this.data.region[1] + ',' + this.data.region[2]
     delete inputData['passwordRe']
     inputData['idtype'] = this.data.idtype
     inputData['city'] = city
     let that = this
-    wx.getUserInfo({
-      lang: 'HAO 社区想获取您的头像信息',
-      withCredentials: true,
+    wx.getUserProfile({
+      desc: '获取用户头像',
       success: (res) => {
         console.log(res)
         inputData['avatar'] = res.userInfo.avatarUrl
@@ -46,16 +131,16 @@ Page({
       },
       fail: (res) => {
         wx.showToast({
-          title: '获取用户信息失败',
+          title: '无法获取用户头像, 注册失败',
           icon: 'none'
         })
-      },
-      complete: (res) => {},
+      }
     })
   },
 
   sendRegisterRequset: function(data) {
     console.log(data)
+    let that = this
     wx.request({
       url: host + '/home/register/',
       data: data,
@@ -66,14 +151,19 @@ Page({
       success (res) {
         let data = res.data
         let code = data.status
+        console.log(data)
         if (code == 200) {
           wx.showToast({
             title: '注册成功',
-            icon: 'success'
+            icon: 'success',
+            duration: 2000,
+            complete () {
+              that.registerSuccessBack(data.data)
+            }
           })
         } else {
           wx.showToast({
-            title: data.msg,
+            title: data.msg == null ? '登录失败, 请稍后重试' : data.msg,
             icon: 'none'
           })
         }
@@ -84,6 +174,14 @@ Page({
           icon: 'none'
         })
       }
+    })
+  },
+
+  registerSuccessBack: function(data) {
+    globalData.userInfo = data
+    console.log(globalData.userInfo)
+    wx.navigateBack({
+      delta: 1
     })
   },
 

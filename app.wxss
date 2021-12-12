@@ -70,9 +70,10 @@ Page {
 .submitButton {
   background-color: var(--lightPurpleColor1);
   color: white;
-  width: 100%;
+  width: 90%;
   margin-top: 10rpx;
   font-size: medium;
+  font-weight: bold;
 }
 
 .submitButtonHover {

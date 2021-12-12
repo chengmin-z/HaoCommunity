@@ -16,6 +16,8 @@
 .profileOperator .loginButton {
   font-size: medium;
   font-weight: bold;
+  margin-left: 5%;
+  width: 43%;
   background-color: var(--lightPurpleColor1);
   color: white;
 }
@@ -27,6 +29,8 @@
 .profileOperator .registerButton {
   font-size: medium;
   font-weight: normal;
+  margin-right: 5%;
+  width: 43%;
   color: var(--grayColor);
 }
 

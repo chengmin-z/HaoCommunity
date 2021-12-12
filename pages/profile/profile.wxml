@@ -2,14 +2,20 @@
 <view class="profileView">
   <view class="profileInfoView">
     <view class="h2Text">
-      暂未登录
+      {{username}}
     </view>
     <view class="avatar">
-      <image class="image" mode="scaleToFill" src="/images/person.crop.circle.png"></image>
+      <image class="image" mode="scaleToFill" src="{{avatar}}"></image>
     </view>
   </view>
   <view class="profileOperator">
-    <button class="loginButton" hover-class='loginButtonHover' bindtap="handleLogin">登录</button>
-    <button class="registerButton" bindtap="handleRegister">注册</button>
+    <block wx:if="{{!userInfo}}">
+      <button class="loginButton" hover-class='loginButtonHover' bindtap="handleLogin">登录</button>
+      <button class="registerButton" bindtap="handleRegister">注册</button>
+    </block>
+    <block wx:else>
+      <button class="loginButton" bindtap="handleEditUserInfo">修改个人信息</button>
+      <button class="registerButton" bindtap="handleLogout">退出登录</button>
+    </block>
   </view>
 </view>
