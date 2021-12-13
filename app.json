@@ -1,9 +1,9 @@
 {
   "pages": [
+    "pages/publish/publish",
     "pages/profile/profile",
     "pages/register/register",
     "pages/index/index",
-    "pages/publish/publish",
     "pages/login/login"
   ],
   "window": {

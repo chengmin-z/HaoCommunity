@@ -1,6 +1,6 @@
+// pages/login/login.js
 import wxValidate from '../../utils/wxValidate.js'
 
-// pages/login/login.js
 let host = getApp().globalData.host
 let globalData = getApp().globalData
 

@@ -5,7 +5,7 @@
       {{username}}
     </view>
     <view class="avatar">
-      <image class="image" mode="scaleToFill" src="{{avatar}}"></image>
+      <image class="image" mode="aspectFill" src="{{avatar}}"></image>
     </view>
   </view>
   <view class="profileOperator">

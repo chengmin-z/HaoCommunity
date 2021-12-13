@@ -79,3 +79,10 @@ Page {
 .submitButtonHover {
   background-color: var(--purpleColor);
 }
+
+.normalButton {
+  font-size: medium;
+  font-weight: normal;
+  width: 43%;
+  color: var(--grayColor);
+}
