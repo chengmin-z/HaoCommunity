@@ -80,13 +80,33 @@ Page({
     })
   },
 
+  handleEditUserInfo: function() {
+    wx.request({
+      url: host + '/home/queryinfo/',
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'cookie': app.globalData.cookie
+      },
+      success (res) {
+        console.log(res)
+        let data = res.data
+        let code = data.status
+      },
+      fail (res) {
+        console.log('reload session failed')
+      }
+    })
+  },
+
   sendLogoutRequset: function() {
     let that = this
     wx.request({
       url: host + '/home/logout/',
       method: 'POST',
       header: {
-        'content-type': 'application/x-www-form-urlencoded'
+        'content-type': 'application/x-www-form-urlencoded',
+        'cookie': app.globalData.cookie
       },
       success (res) {
         console.log(res)
@@ -95,6 +115,7 @@ Page({
         console.log(data)
         if (code == 200) {
           app.globalData.userInfo = null
+          app.globalData.cookie = null
           that.setData({
             username: '暂未登录',
             avatar: '/images/person.crop.circle.png',

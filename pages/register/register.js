@@ -2,7 +2,7 @@ import wxValidate from '../../utils/wxValidate.js'
 
 // pages/register/register.js
 let host = getApp().globalData.host
-let globalData = getApp().globalData
+let app = getApp()
 
 Page({
   initValidate: function() {
@@ -153,6 +153,8 @@ Page({
         let code = data.status
         console.log(data)
         if (code == 200) {
+          console.log(res)
+          app.globalData.cookie = res.cookies[0]
           wx.showToast({
             title: '注册成功',
             icon: 'success',
@@ -178,8 +180,8 @@ Page({
   },
 
   registerSuccessBack: function(data) {
-    globalData.userInfo = data
-    console.log(globalData.userInfo)
+    app.globalData.userInfo = data
+    console.log(app.globalData.userInfo)
     wx.navigateBack({
       delta: 1
     })

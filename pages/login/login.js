@@ -88,8 +88,11 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success (res) {
+        console.log(res)
         let data = res.data
         let code = data.status
+        globalData.cookie = res.cookies[0]
+        console.log(globalData.cookie)
         if (code == 200) {
           wx.showToast({
             title: '登录成功',
