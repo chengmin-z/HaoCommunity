@@ -17,23 +17,48 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-
+    // refresh data
+    let that = this
+    if (app.globalData.userInfo) {
+      this.setData({
+        userInfo: app.globalData.userInfo,
+        username: app.globalData.userInfo.realname,
+        avatar: app.globalData.userInfo.avatar
+      })
+    } else {
+      wx.request({
+        url: host + '/home/queryinfo/',
+        method: 'POST',
+        header: {
+          'content-type': 'application/x-www-form-urlencoded',
+          'cookie': app.globalData.cookie
+        },
+        success (res) {
+          console.log(res)
+          let data = res.data
+          let code = data.status
+          if (code == 200) {
+            app.globalData.userInfo = data.data
+            that.setData({
+              userInfo: data.data,
+              username: data.data.realname,
+              avatar: data.data.avatar
+            })
+          }
+        },
+        fail (res) {
+          console.log('reload session failed')
+        }
+      })
+    }
   },
 
   onShow: function() {
-    // refresh data
     if (app.globalData.userInfo) {
-      let userinfo = app.globalData.userInfo
       this.setData({
-        userInfo: userinfo,
-        username: userinfo.realname,
-        avatar: userinfo.avatar
-      })
-    } else {
-      this.setData({
-        username: '暂未登录',
-        avatar: '/images/person.crop.circle.png',
-        userInfo: null
+        userInfo: app.globalData.userInfo,
+        username: app.globalData.userInfo.realname,
+        avatar: app.globalData.userInfo.avatar
       })
     }
   },

@@ -14,7 +14,7 @@
       <button class="registerButton" bindtap="handleRegister">注册</button>
     </block>
     <block wx:else>
-      <button class="loginButton" bindtap="handleEditUserInfo">修改个人信息</button>
+      <button class="loginButton" bindtap="handleEditUserInfo">查看个人信息</button>
       <button class="registerButton" bindtap="handleLogout">退出登录</button>
     </block>
   </view>

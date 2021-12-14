@@ -86,13 +86,6 @@ Page({
       })
       return false
     }
-    if(!this.data.imgPath) {
-      wx.showToast({
-        title: '请选择图片描述',
-        icon: 'none'
-      })
-      return false
-    }
     let inputData = e.detail.value
     let taskTypeNo = this.data.tasktype == this.data.taskTypeArray.length - 1 ? 1000 : this.data.tasktype
     inputData['tasktype'] = taskTypeNo
@@ -105,45 +98,87 @@ Page({
     wx.showLoading({
       title: '正在创建任务',
     })
-    wx.uploadFile({
-      filePath: this.data.imgPath,
-      name: 'image',
-      formData: inputData,
-      url: host + '/task/publish/',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded',
-        'cookie': app.globalData.cookie
-      },
-      success (res) {
-        wx.hideLoading()
-        console.log(res)
-        let data = JSON.parse(res.data)
-        let code = data.status
-        console.log(data)
-        if (code == 200) {
+    if (this.data.imgPath) {
+      wx.uploadFile({
+        filePath: this.data.imgPath == null ? '' : this.data.imgPath,
+        name: 'image',
+        formData: inputData,
+        url: host + '/task/publish/',
+        header: {
+          'content-type': 'application/x-www-form-urlencoded',
+          'cookie': app.globalData.cookie
+        },
+        success (res) {
+          wx.hideLoading()
+          console.log(res)
+          let data = JSON.parse(res.data)
+          let code = data.status
+          console.log(data)
+          if (code == 200) {
+            wx.showToast({
+              title: '发布任务成功, 请在我的中查看',
+              duration: 2000,
+              icon: 'none'
+            })
+          } else {
+            wx.showToast({
+              title: data.msg == null ? '发布任务失败, 请稍后重试' : data.msg,
+              duration: 2000,
+              icon: 'none'
+            })
+          }
+        },
+        fail (res) {
+          wx.hideLoading()
+          console.log(res)
           wx.showToast({
-            title: '发布任务成功, 请在我的中查看',
-            duration: 2000,
-            icon: 'none'
-          })
-        } else {
-          wx.showToast({
-            title: data.msg == null ? '发布任务失败, 请稍后重试' : data.msg,
+            title: '发布任务失败, 请稍后重试',
             duration: 2000,
             icon: 'none'
           })
         }
-      },
-      fail (res) {
-        wx.hideLoading()
-        console.log(res)
-        wx.showToast({
-          title: '发布任务失败, 请稍后重试',
-          duration: 2000,
-          icon: 'none'
-        })
-      }
-    })
+      })
+    } else {
+      wx.request({
+        data: inputData,
+        url: host + '/task/publish/',
+        method: 'POST',
+        header: {
+          'content-type': 'application/x-www-form-urlencoded',
+          'cookie': app.globalData.cookie
+        },
+        success (res) {
+          wx.hideLoading()
+          console.log(res)
+          let data = res.data
+          let code = data.status
+          console.log(data)
+          if (code == 200) {
+            wx.showToast({
+              title: '发布任务成功, 请在我的中查看',
+              duration: 2000,
+              icon: 'none'
+            })
+          } else {
+            wx.showToast({
+              title: data.msg == null ? '发布任务失败, 请稍后重试' : data.msg,
+              duration: 2000,
+              icon: 'none'
+            })
+          }
+        },
+        fail (res) {
+          wx.hideLoading()
+          console.log(res)
+          wx.showToast({
+            title: '发布任务失败, 请稍后重试',
+            duration: 2000,
+            icon: 'none'
+          })
+        }
+      })
+    }
+    
   },
 
   chooseImage: function() {

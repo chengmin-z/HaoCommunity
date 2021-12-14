@@ -28,6 +28,6 @@ App({
   globalData: {
     host: 'https://8.141.51.178',
     userInfo: null,
-    cookie: 'sessionid=jh2tzmsg37imrlr6ftlrut4cns75ruc5; expires=Tue 28 Dec 2021 06:24:46 GMT; HttpOnly; Max-Age=1209600; Path=/; SameSite=Lax;'
+    cookie: 'sessionid=e8ou2xsc48n5vs5nerb8ciss90yd8b02; expires=Tue 28 Dec 2021 09:18:24 GMT; HttpOnly; Max-Age=1209600; Path=/; SameSite=Lax'
   }
 })
