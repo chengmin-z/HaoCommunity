@@ -39,6 +39,7 @@ Page({
    */
   data: {
     taskTypeArray: ['小时工', '搬重物', '上下班搭车', '社区服务志愿者', '其他'],
+    taskType2No: { 0: '小时工', 1: '搬重物', 2: '上下班搭车', 3: '社区服务志愿者', 1000: '其他'},
     tasktype: 0,
     enddate: '',
     endtime: '',
@@ -93,7 +94,8 @@ Page({
       return false
     }
     let inputData = e.detail.value
-    inputData['tasktype'] = this.data.tasktype
+    let taskTypeNo = this.data.tasktype == this.data.taskTypeArray.length - 1 ? 1000 : this.data.tasktype
+    inputData['tasktype'] = taskTypeNo
     inputData['endtime'] = this.data.enddate + ' ' + this.data.endtime
     console.log(inputData)
     this.sendPubTaskRequest(inputData)

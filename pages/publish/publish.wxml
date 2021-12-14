@@ -4,40 +4,60 @@
     <custom-comp>
     <view class="formItem">
       <view class="h4Text">任务名称</view>
-      <input class="input" name="title" placeholder="请输入任务名称"/>
+      <view class="inputContainer">
+        <text class='iconfont icon-tag'></text>
+        <input class="input" name="title" placeholder="请输入任务名称"/>
+      </view>
     </view>
     <view class="formItem">
       <view class="h4Text">任务描述</view>
-      <input class="input" name="description" placeholder="请输入任务描述"/>
+      <view class="inputContainer">
+        <text class='iconfont icon-edit'></text>
+        <input class="input" name="description" placeholder="请输入任务描述"/>
+      </view>
     </view>
     <view class="formItem">
       <view class="h4Text">任务类型</view>
-      <picker class="pickerPreview" bindchange="bindTaskTypeChange" value="{{index}}" range="{{taskTypeArray}}">
-          {{taskTypeArray[tasktype]}}
-      </picker>
+      <view class="inputContainer">
+        <text class='iconfont icon-list'></text>
+        <picker class="pickerPreview" bindchange="bindTaskTypeChange" value="{{index}}" range="{{taskTypeArray}}">
+            {{taskTypeArray[tasktype]}}
+        </picker>
+      </view>
     </view>
     <view class="formItem">
       <view class="h4Text">所需人数</view>
-      <input class="input" type="digit" name="neednum" placeholder="请输入所需人数"/>
+      <view class="inputContainer">
+        <text class='iconfont icon-friend'></text>
+        <input class="input" type="digit" name="neednum" placeholder="请输入所需人数"/>
+      </view>
     </view>
     <view class="formItem">
       <view class="h4Text">到期日期</view>
-      <picker class="pickerPreview" mode="date" start="{{startDateLimit}}" end="{{endDateLimit}}" bindchange="bindDateChange" value="{{enddate}}">
-          {{enddate}}
-      </picker>
+      <view class="inputContainer">
+        <text class='iconfont icon-calendar'></text>
+        <picker class="pickerPreview" mode="date" start="{{startDateLimit}}" end="{{endDateLimit}}" bindchange="bindDateChange" value="{{enddate}}">
+            {{enddate}}
+        </picker>
+      </view>
     </view>
     <view class="formItem">
       <view class="h4Text">到期时间</view>
-      <picker class="pickerPreview" mode="time" bindchange="bindTimeChange" value="{{endtime}}">
-          {{endtime}}
-      </picker>
-    </view>
-    <view class="formItem">
-      <view class="h4Text">图片描述</view>
-      <view class="avatar" wx:if="{{imgPath}}">
-        <image class="image" mode="aspectFill" src="{{imgPath}}"></image>
+      <view class="inputContainer">
+        <text class='iconfont icon-time'></text>
+        <picker class="pickerPreview" mode="time" bindchange="bindTimeChange" value="{{endtime}}">
+            {{endtime}}
+        </picker>
       </view>
-      <button class="normalButton" bindtap="chooseImage">选择图片</button>
+    </view>
+    <view class="formImgItem">
+      <view class="h4Text">图片描述</view>
+      <view class="imgInputContainer">
+        <view class="avatar" wx:if="{{imgPath}}">
+          <image class="image" mode="aspectFill" src="{{imgPath}}"></image>
+        </view>
+        <button class="normalButton" bindtap="chooseImage">选择图片</button>
+      </view>
     </view>
     </custom-comp>
     <button class="submitButton" hover-class="submitButtonHover" form-type="submit">发布</button>

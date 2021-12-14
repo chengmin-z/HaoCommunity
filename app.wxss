@@ -1,4 +1,6 @@
 /**app.wxss**/
+@import "iconfont.wxss";
+
 Page {
   --themeColor: #6782F2;
   --fontColor: #555555;
@@ -42,26 +44,40 @@ Page {
   height: 100rpx;
   width: 100%;
   display: flex;
-  align-items: center;
-  flex-direction: row;
+  align-items: left;
+  margin-bottom: 3%;
+  flex-direction: column;
 }
 
 .formItem .h4Text {
-  margin-left: 2%;
-  width: 18%;
-  text-align: right;
-  margin-right: 2%;
+  margin-left: 4%;
+  margin-bottom: 1.5%;
+  text-align: left;
 }
 
-.formItem .input {
+.formItem .inputContainer {
+  margin-left: 4%;
+  margin-right: 4%;
+  display: flex;
+  flex-direction: row;
   border-bottom: 1px solid var(--lightPurpleColor3);
-  font-size: medium;
+}
+
+.inputContainer .iconfont {
+  margin-right: 3%;
+  text-align: left;
+  font-size: larger;
+  font-weight: medium;
+  color: var(--lightPurpleColor1);
+}
+
+.inputContainer .input {
+  font-size:medium;
   width: 74%;
   color: var(--fontColor);
 }
 
-.formItem .pickerPreview {
-  border-bottom: 1px solid var(--lightPurpleColor3);
+.inputContainer .pickerPreview {
   font-size: medium;
   width: 74%;
   color: var(--fontColor);
@@ -70,7 +86,7 @@ Page {
 .submitButton {
   background-color: var(--lightPurpleColor1);
   color: white;
-  width: 90%;
+  width: 92%;
   margin-top: 10rpx;
   font-size: medium;
   font-weight: bold;

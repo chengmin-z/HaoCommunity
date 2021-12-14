@@ -1,10 +1,11 @@
 {
   "pages": [
     "pages/publish/publish",
-    "pages/profile/profile",
+    "pages/login/login",
     "pages/register/register",
-    "pages/index/index",
-    "pages/login/login"
+    "pages/profile/profile",
+    "pages/index/index"
+
   ],
   "window": {
     "navigationStyle": "default",

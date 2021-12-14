@@ -1,21 +1,37 @@
 /* pages/publish/publish.wxss */
+.formImgItem {
+  margin-left: 4%;
+  height: 120rpx;
+  width: 100%;
+  display: flex;
+  align-items: left;
+  margin-bottom: 3%;
+  flex-direction: column;
+}
 
-.formItem .normalButton {
-  margin-left: 0%;
+.imgInputContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.imgInputContainer .normalButton {
+  height: 60rpx;
   font-size: small;
-  width: 30%;
+  margin-left: 0;
+  margin-top: 2%;
 }
 
-.formItem .avatar {
-  width: 85rpx;
-  height: 85rpx;
-  margin-right: 2%;
-  align-items: center;
+.imgInputContainer .avatar {
+  width: 80rpx;
+  height: 80rpx;
   display: block;
+  margin-right: 2%;
+  border: var(--lightPurpleColor1) solid 3rpx;
 }
 
-.formItem .image {
+.avatar .image {
   display: block;
   width: 100%;
   height: 100%;
 }
+

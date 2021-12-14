@@ -4,11 +4,17 @@
     <custom-comp>
     <view class="formItem">
       <view class="h4Text">用户名称</view>
-      <input class="input" name="username" placeholder="请输入用户名"/>
+      <view class="inputContainer">
+        <text class='iconfont icon-people'></text>
+        <input class="input" name="username" placeholder="请输入用户名"/>
+      </view>
     </view>
     <view class="formItem">
       <view class="h4Text">用户密码</view>
-      <input class="input" type="password" name="password" placeholder="请输入密码"/>
+      <view class="inputContainer">
+        <text class='iconfont icon-lock'></text>
+        <input class="input" type="password" name="password" placeholder="请输入密码"/>
+      </view>
     </view>
     </custom-comp>
     <button class="submitButton" hover-class="submitButtonHover" form-type="submit">登录</button>
