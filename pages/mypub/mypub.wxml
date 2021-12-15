@@ -1,0 +1,31 @@
+<!--pages/mypub/mypub.wxml-->
+<view class="flexContainer">
+  <view class="list">
+    <view class="taskListItem" wx:for="{{mypubs}}" data-index="{{index}}" wx:key="taskid" bindtap="handleShowPubDetail">
+      <view class="cardContainer">
+        <view class="taskBasicInfo">
+          <view class="taskBasicInfoHead">
+            <view class="h3Text"> {{item.title}} </view>
+            <view class="h4Text" style="color: {{taskState2Color[item.state]}};"> {{ taskStateNo2Name[item.state] }} </view>
+          </view>
+          <view class="taskBasicOverView">
+            <view class="basicItem">
+              <text class='iconfont icon-list'></text>
+              <view class="h5Text"> {{ taskTypeNo2Name[item.tasktype] }} </view>
+            </view>
+            <view class="basicItem">
+              <text class='iconfont icon-friend'></text>
+              <view class="h5Text"> 需求/响应 </view>
+              <view class="h5Text"> {{ item.neednum + '/' + item.reply.length }} </view>
+            </view>
+          </view>
+        </view>
+        <view class="taskListItem-pic">
+          <view class="pic">
+            <image wx:if="{{item.image != ''}}" class="image" mode="aspectFill" src="{{picPrefix + item.image}}"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

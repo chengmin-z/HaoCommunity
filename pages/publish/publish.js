@@ -38,8 +38,8 @@ Page({
    * Page initial data
    */
   data: {
-    taskTypeArray: ['小时工', '搬重物', '上下班搭车', '社区服务志愿者', '其他'],
-    taskType2No: { 0: '小时工', 1: '搬重物', 2: '上下班搭车', 3: '社区服务志愿者', 1000: '其他'},
+    taskTypeArray: app.globalData.taskTypeArray,
+    taskType2No: app.globalData.taskType2No,
     tasktype: 0,
     enddate: '',
     endtime: '',

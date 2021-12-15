@@ -22,13 +22,13 @@
   </view>
   <view class="sectionLineSpace"></view>
   <view class="list">
-    <view class="listItem">
+    <view class="listItem" bindtap="handleShowMyPubPage">
       <text class='iconfont icon-upload'></text>
       <view class="h3Text">我的发布</view>
       <text class='iconfont icon-right'></text>
     </view>
     <view class="listItemLineSpace"></view>
-    <view class="listItem">
+    <view class="listItem" bindtap="handleShowMyReplyPage">
       <text class='iconfont icon-post'></text>
       <view class="h3Text">我的响应</view>
       <text class='iconfont icon-right'></text>

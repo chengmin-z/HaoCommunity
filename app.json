@@ -1,12 +1,14 @@
 {
   "pages": [
     "pages/profile/profile",
+    "pages/mypub/mypub",
     "pages/userinfo/userinfo",
     "pages/publish/publish",
     "pages/login/login",
     "pages/register/register",
     "pages/index/index",
-    "pages/editpass/editpass"
+    "pages/editpass/editpass",
+    "pages/myreply/myreply"
   ],
   "window": {
     "navigationStyle": "default",

@@ -6,6 +6,7 @@ Page {
   --fontColor: #555555;
   --grayColor: #999999;
   --purpleColor: #6C87F5;
+  --blueColor: #3d83df;
   --lightPurpleColor1: #95A7F2;
   --lightPurpleColor2: #96A5E5;
   --lightPurpleColor3: #D2DAF7;

@@ -46,9 +46,12 @@ App({
   globalData: {
     host: 'https://8.141.51.178',
     userInfo: null,
-    cookie: 'sessionid=29vyltb5yyys5bpcn96dnti7qawu4sk1; expires=Wed 29 Dec 2021 05:06:32 GMT; HttpOnly; Max-Age=1209600; Path=/; SameSite=Lax',
+    cookie: 'sessionid=j31f0avqmwdeeh2gphmkv83njy8yzgq1; expires=Wed 29 Dec 2021 14:35:55 GMT; HttpOnly; Max-Age=1209600; Path=/; SameSite=Lax',
     idtypeName: ['居民身份证', '护照', '港澳居民来往内地通行证', '台湾居民来往大陆通行证', '外国人永久居留身份证'],
     idtypeNo2Name: {0:'居民身份证', 1:'护照', 2:'港澳居民来往内地通行证', 3:'台湾居民来往大陆通行证', 4:'外国人永久居留身份证'},
-    userLevel2Name: {0:'普通用户', 1:'VIP会员'}
+    userLevel2Name: {0:'普通用户', 1:'VIP会员'},
+    taskTypeArray: ['小时工', '搬重物', '上下班搭车', '社区服务志愿者', '其他'],
+    taskType2No: {0: '小时工', 1: '搬重物', 2: '上下班搭车', 3: '社区服务志愿者', 1000: '其他'},
+    taskStateNo2Name: {0: '进行中', 1: '进行中', 2: '已完成', 3: '已过期', 4: '已取消'}
   }
 })

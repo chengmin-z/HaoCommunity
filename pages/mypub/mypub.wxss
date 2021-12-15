@@ -1,0 +1,90 @@
+/* pages/mypub/mypub.wxss */
+
+.taskListItem {
+  height: 170rpx;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.cardContainer {
+  width: 90%;
+  height: 90%;
+  background-color: white;
+  border-radius: 10rpx;
+  box-shadow: 5px 5px 5px #e6e6e6;
+  display: flex;
+  flex-direction: row;
+}
+
+.cardContainer .taskBasicInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.taskBasicInfo .taskBasicInfoHead {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20rpx;
+}
+
+.taskBasicInfoHead .h3Text {
+  flex: 1;
+  font-weight: 500;
+  margin-left: 20rpx;
+}
+
+.taskBasicInfoHead .h4Text {
+  font-size: small;
+  font-weight: 450;
+  margin-right: 20rpx;
+}
+
+.taskBasicInfo .taskBasicOverView {
+  display: flex;
+  flex-direction: row;
+  margin-left: 20rpx;
+  margin-top: 30rpx;
+}
+
+.taskBasicOverView .basicItem {
+  display: flex;
+  flex-direction: row;
+  margin-right: 15rpx;
+}
+
+.basicItem .iconfont {
+  font-size: medium;
+  font-weight: bold;
+  color: var(--fontColor);
+}
+
+.basicItem .h5Text {
+  font-size: small;
+  margin-left: 8rpx;
+  color: var(--fontColor);
+}
+
+.taskListItem-pic .pic {
+  height: 100rpx;
+  width: 100rpx;
+}
+
+.taskListItem-pic {
+  width: 100rpx;
+  margin-top: 20rpx;
+  margin-right: 20rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.pic .image {
+  border-radius: 10rpx;
+  display: block;
+  width: 100%;
+  height: 100%;
+}

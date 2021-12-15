@@ -26,30 +26,7 @@ Page({
         avatar: app.globalData.userInfo.avatar
       })
     } else {
-      wx.request({
-        url: host + '/home/queryinfo/',
-        method: 'POST',
-        header: {
-          'content-type': 'application/x-www-form-urlencoded',
-          'cookie': app.globalData.cookie
-        },
-        success (res) {
-          console.log(res)
-          let data = res.data
-          let code = data.status
-          if (code == 200) {
-            app.globalData.userInfo = data.data
-            that.setData({
-              userInfo: data.data,
-              username: data.data.realname,
-              avatar: data.data.avatar
-            })
-          }
-        },
-        fail (res) {
-          console.log('reload session failed')
-        }
-      })
+      this.sendGetCurrentUserRequest()
     }
   },
 
@@ -62,14 +39,6 @@ Page({
       })
     }
   },
-
-  /**
-   * Lifecycle function--Called when page is initially rendered
-   */
-  onReady: function () {
-
-  },
-
   /**
    * Page event handler function--Called when user drop down
    */
@@ -111,12 +80,58 @@ Page({
     })
   },
 
+  handleShowMyPubPage: function() {
+    if(!app.checkLogin()) {
+      return false
+    }
+    wx.navigateTo({
+      url: '/pages/mypub/mypub',
+    })
+  },
+
+  handleShowMyReplyPage: function() {
+    if(!app.checkLogin()) {
+      return false
+    }
+    wx.navigateTo({
+      url: '/pages/myreply/myreply',
+    })
+  },
+
   handleEditPassword: function() {
     if(!app.checkLogin()) {
       return false
     }
     wx.navigateTo({
       url: '/pages/editpass/editpass',
+    })
+  },
+
+  sendGetCurrentUserRequest: function() {
+    let that = this
+    wx.request({
+      url: host + '/home/queryinfo/',
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'cookie': app.globalData.cookie
+      },
+      success (res) {
+        console.log(res)
+        let data = res.data
+        let code = data.status
+        if (code == 200) {
+          app.globalData.userInfo = data.data
+          that.setData({
+            userInfo: data.data,
+            username: data.data.realname,
+            avatar: data.data.avatar
+          })
+        }
+      },
+      fail (res) {
+        console.log('reload session failed')
+      }
     })
   },
 
