@@ -1,21 +1,44 @@
 <!--pages/profile/profile.wxml-->
-<view class="profileView">
-  <view class="profileInfoView">
-    <view class="h2Text">
-      {{username}}
+<view class="flexContainer">
+  <view class="profileView">
+    <view class="profileInfoView">
+      <view class="h2Text">
+        {{username}}
+      </view>
+      <view class="avatar">
+        <image class="image" mode="aspectFill" src="{{avatar}}"></image>
+      </view>
     </view>
-    <view class="avatar">
-      <image class="image" mode="aspectFill" src="{{avatar}}"></image>
+    <view class="profileOperator">
+      <block wx:if="{{!userInfo}}">
+        <button class="loginButton" hover-class="loginButtonHover" bindtap="handleLogin">登录</button>
+        <button class="registerButton" bindtap="handleRegister">注册</button>
+      </block>
+      <block wx:else>
+        <button class="loginButton" hover-class="loginButtonHover" bindtap="handleEditUserInfo">查看个人信息</button>
+        <button class="registerButton" bindtap="handleLogout">退出登录</button>
+      </block>
     </view>
   </view>
-  <view class="profileOperator">
-    <block wx:if="{{!userInfo}}">
-      <button class="loginButton" hover-class='loginButtonHover' bindtap="handleLogin">登录</button>
-      <button class="registerButton" bindtap="handleRegister">注册</button>
-    </block>
-    <block wx:else>
-      <button class="loginButton" bindtap="handleEditUserInfo">查看个人信息</button>
-      <button class="registerButton" bindtap="handleLogout">退出登录</button>
-    </block>
+  <view class="sectionLineSpace"></view>
+  <view class="list">
+    <view class="listItem">
+      <text class='iconfont icon-upload'></text>
+      <view class="h3Text">我的发布</view>
+      <text class='iconfont icon-right'></text>
+    </view>
+    <view class="listItemLineSpace"></view>
+    <view class="listItem">
+      <text class='iconfont icon-post'></text>
+      <view class="h3Text">我的响应</view>
+      <text class='iconfont icon-right'></text>
+    </view>
+    <view class="listItemLineSpace"></view>
+    <view class="listItem" bindtap="handleEditPassword">
+      <text class='iconfont icon-lock'></text>
+      <view class="h3Text">修改密码</view>
+      <text class='iconfont icon-right'></text>
+    </view>
+    <view class="listItemLineSpace"></view>
   </view>
 </view>

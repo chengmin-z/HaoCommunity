@@ -48,8 +48,8 @@
 }
 
 .profileInfoView .avatar {
-  width: 90rpx;
-  height: 90rpx;
+  width: 100rpx;
+  height: 100rpx;
   margin-right: 5%;
   align-items: center;
   display: block;
@@ -60,4 +60,28 @@
   width: 100%;
   height: 100%;
   border-radius: 50%;
+}
+
+.listItem .h3Text {
+  flex: 1;
+  margin-left: 3%;
+}
+
+.listItem .iconfont {
+  font-size: x-large;
+  margin-left: 5%;
+}
+
+.listItem .icon-right {
+  margin-right: 5%;
+  font-weight: lighter;
+  color: var(--lightPurpleColor2);
+}
+
+.list .listItemLineSpace {
+  width: auto;
+  opacity: 0.1;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 40rpx;
 }

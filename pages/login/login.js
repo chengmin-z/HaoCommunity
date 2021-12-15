@@ -2,7 +2,7 @@
 import wxValidate from '../../utils/wxValidate.js'
 
 let host = getApp().globalData.host
-let globalData = getApp().globalData
+let app = getApp()
 
 Page({
   initValidate: function() {
@@ -12,8 +12,7 @@ Page({
           minlength: 5
         },
         password: {
-          required: true,
-          minlength: 6
+          required: true
         }
       }, {
         username: {
@@ -91,8 +90,8 @@ Page({
         console.log(res)
         let data = res.data
         let code = data.status
-        globalData.cookie = res.cookies[0]
-        console.log(globalData.cookie)
+        app.globalData.cookie = res.cookies[0]
+        console.log(app.globalData.cookie)
         if (code == 200) {
           wx.showToast({
             title: '登录成功',
@@ -111,7 +110,7 @@ Page({
       },
       fail (res) {
         wx.showToast({
-          title: '登录失败, 请稍后重试',
+          title: res.msg == null ? '登录失败, 请稍后重试' : res.msg,
           icon: 'none'
         })
       }
@@ -119,8 +118,8 @@ Page({
   },
   
   loginSuccessBack: function(data) {
-    globalData.userInfo = data
-    console.log(globalData.userInfo)
+    app.globalData.userInfo = data
+    console.log(app.globalData.userInfo)
     wx.navigateBack({
       delta: 1
     })

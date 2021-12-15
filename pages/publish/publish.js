@@ -76,6 +76,9 @@ Page({
   },
 
   handlePublish: function(e) {
+    if(!app.checkLogin()) {
+      return false
+    }
     // check
     if (!this.validate.checkForm(e)) {
       const error = this.validate.errorList[0];
@@ -132,7 +135,7 @@ Page({
           wx.hideLoading()
           console.log(res)
           wx.showToast({
-            title: '发布任务失败, 请稍后重试',
+            title: res.msg == null ? '发布任务失败, 请稍后重试' : res.msg,
             duration: 2000,
             icon: 'none'
           })
@@ -171,7 +174,7 @@ Page({
           wx.hideLoading()
           console.log(res)
           wx.showToast({
-            title: '发布任务失败, 请稍后重试',
+            title: res.msg == null ? '发布任务失败, 请稍后重试' : res.msg,
             duration: 2000,
             icon: 'none'
           })

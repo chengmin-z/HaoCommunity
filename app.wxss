@@ -11,6 +11,15 @@ Page {
   --lightPurpleColor3: #D2DAF7;
 }
 
+.sectionLineSpace {
+  margin-top: 30rpx;
+  margin-bottom: 30rpx;
+  background-color: var(--grayColor);
+  width: 100%;
+  height: 1rpx;
+  opacity: 0.2;
+}
+
 .h2Text {
   font-size: larger;
   font-weight: 600;
@@ -25,9 +34,27 @@ Page {
 
 .h4Text {
   font-size: medium;
-  font-weight: normal;
   font-weight: 600;
   color: var(--fontColor);
+}
+
+.h5Text {
+  font-size: medium;
+  font-weight: normal;
+  color: var(--fontColor);
+}
+
+.avatar {
+  width: 90rpx;
+  height: 90rpx;
+  display: block;
+}
+
+.avatar .image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
 }
 
 .flexContainer {
@@ -81,6 +108,51 @@ Page {
   font-size: medium;
   width: 74%;
   color: var(--fontColor);
+}
+
+.listItemLineSpace {
+  margin-top: 5rpx;
+  margin-bottom: 5rpx;
+  background-color: var(--grayColor);
+  width: 100%;
+  height: 1rpx;
+  opacity: 0.2;
+}
+
+.list {
+  margin-top: 10rpx;
+}
+
+.listItem {
+  height: 50rpx;
+  width: 100%;
+  margin-top: 30rpx;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+.listItem .iconfont {
+  margin-left: 2%;
+  text-align: left;
+  font-size: larger;
+  color: var(--themeColor);
+}
+
+.listItem .h3Text {
+  margin-left: 4%;
+}
+
+.listItem .h4Text {
+  font-weight: 500;
+  margin-left: 4%;
+}
+
+.listItem .h5Text {
+  color: var(--fontColor);
+  margin-left: 5%;
 }
 
 .submitButton {

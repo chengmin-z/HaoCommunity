@@ -31,6 +31,7 @@
 .imgInputContainer .avatar {
   width: 80rpx;
   height: 80rpx;
+  border-radius: 0;
   display: block;
   margin-right: 2%;
   border: var(--lightPurpleColor1) solid 3rpx;
@@ -38,6 +39,7 @@
 
 .avatar .image {
   display: block;
+  border-radius: 0;
   width: 100%;
   height: 100%;
 }

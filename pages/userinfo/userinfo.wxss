@@ -1,0 +1,17 @@
+/* pages/userinfo/userinfo.wxss */
+.avatar-info {
+  margin-top: 35rpx;
+  margin-bottom: 25rpx;
+}
+
+.listItem-avatar .avatar {
+  height: 150rpx;
+  width: 150rpx;
+}
+
+.listItem-avatar {
+  width: 100%;
+  margin-top: 20rpx;
+  display: flex;
+  justify-content: center;
+}

@@ -106,21 +106,17 @@ Page({
   },
 
   handleEditUserInfo: function() {
-    wx.request({
-      url: host + '/home/queryinfo/',
-      method: 'POST',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded',
-        'cookie': app.globalData.cookie
-      },
-      success (res) {
-        console.log(res)
-        let data = res.data
-        let code = data.status
-      },
-      fail (res) {
-        console.log('reload session failed')
-      }
+    wx.navigateTo({
+      url: '/pages/userinfo/userinfo',
+    })
+  },
+
+  handleEditPassword: function() {
+    if(!app.checkLogin()) {
+      return false
+    }
+    wx.navigateTo({
+      url: '/pages/editpass/editpass',
     })
   },
 
@@ -159,7 +155,7 @@ Page({
       },
       fail (res) {
         wx.showToast({
-          title: '登出失败, 请稍后重试',
+          title: res.msg == null ? '登出失败, 请稍后重试' : res.msg,
           icon: 'none'
         })
       }

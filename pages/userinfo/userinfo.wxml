@@ -1,0 +1,59 @@
+<!--pages/userinfo/userinfo.wxml-->
+<view class="flexContainer">
+  <view class="avatar-info">
+    <view class="listItem-avatar">
+      <view class="avatar">
+        <image class="image" mode="aspectFill" src="{{userInfo.avatar}}"></image>
+      </view>
+    </view>
+    <view class="listItem-avatar">
+      <view class="h2Text">
+          {{userInfo.realname}}
+      </view>
+    </view>
+  </view>
+  <view class="list">
+    <view class="listItem">
+      <view class="h4Text">用户名称</view>
+      <view class="h5Text"> {{userInfo.username}} </view>
+    </view>
+    <view class="listItemLineSpace"></view>
+    <view class="listItem">
+      <view class="h4Text">所在城市</view>
+      <view class="h5Text"> {{userInfo.city}} </view>
+    </view>
+    <view class="listItemLineSpace"></view>
+    <view class="listItem">
+      <view class="h4Text">所在社区</view>
+      <view class="h5Text"> {{userInfo.community}} </view>
+    </view>
+    <view class="listItemLineSpace"></view>
+    <view class="listItem">
+      <view class="h4Text">证件类型</view>
+      <view class="h5Text"> {{idtypeNo2Name[userInfo.idtype]}} </view>
+    </view>
+    <view class="listItemLineSpace"></view>
+    <view class="listItem">
+      <view class="h4Text">证件号码</view>
+      <view class="h5Text"> {{userInfo.idnumber}} </view>
+    </view>
+    <view class="listItemLineSpace"></view>
+    <view class="listItem">
+      <view class="h4Text">会员等级</view>
+      <view class="h5Text"> {{userLevel2Name[userInfo.userlevel]}} </view>
+    </view>
+    <view class="listItemLineSpace"></view>
+    <view class="listItem">
+      <view class="h4Text">手机号码</view>
+      <view class="h5Text"> {{userInfo.phone}} </view>
+      <text class='iconfont icon-edit' bindtap="handleEditPhone"></text>
+    </view>
+    <view class="listItemLineSpace"></view>
+    <view class="listItem">
+      <view class="h4Text">用户简介</view>
+      <view class="h5Text"> {{userInfo.description}} </view>
+      <text class='iconfont icon-edit' bindtap="handleEditDescription"></text>
+    </view>
+    <view class="listItemLineSpace"></view>
+  </view>
+</view>

@@ -35,7 +35,7 @@ Page({
       }, {
         username: {
           required: '请输入用户名称',
-          rangelength: '用户名称至少为6位字符'
+          minlength: '用户名称至少为6位字符'
         },
         password: {
           required: '请输入密码',
@@ -73,7 +73,7 @@ Page({
    * Page initial data
    */
   data: {
-    idtypeArray: ['居民身份证', '护照', '港澳居民来往内地通行证', '台湾居民来往大陆通行证', '外国人永久居留身份证'],
+    idtypeArray: app.globalData.idtypeName,
     region: ['北京市', '北京市', '海淀区'],
     idtype: 0
   },
@@ -165,14 +165,14 @@ Page({
           })
         } else {
           wx.showToast({
-            title: data.msg == null ? '登录失败, 请稍后重试' : data.msg,
+            title: data.msg == null ? '注册失败, 请稍后重试' : data.msg,
             icon: 'none'
           })
         }
       },
       fail (res) {
         wx.showToast({
-          title: '注册失败, 请稍后重试',
+          title: res.msg == null ? '注册失败, 请稍后重试' : res.msg,
           icon: 'none'
         })
       }

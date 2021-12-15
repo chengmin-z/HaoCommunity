@@ -1,0 +1,29 @@
+<!--pages/editpass/editpass.wxml-->
+<view class="flexContainer">
+  <form class="normalForm" bindsubmit="handleEditPassword">
+    <custom-comp>
+      <view class="formItem">
+      <view class="h4Text">验证旧密码</view>
+      <view class="inputContainer">
+        <text class='iconfont icon-lock'></text>
+        <input class="input" type="password" name="oldPwd" placeholder="请输入原密码"/>
+      </view>
+    </view>
+    <view class="formItem">
+      <view class="h4Text">设置新密码</view>
+      <view class="inputContainer">
+        <text class='iconfont icon-lock'></text>
+        <input class="input" type="password" name="newPwd" placeholder="请输入新密码"/>
+      </view>
+    </view>
+    <view class="formItem">
+      <view class="h4Text">新密码确认</view>
+      <view class="inputContainer">
+        <text class='iconfont icon-lock'></text>
+        <input class="input" type="password" name="newPwdRe" placeholder="请确认新密码"/>
+      </view>
+    </view>
+    </custom-comp>
+    <button class="submitButton" hover-class="submitButtonHover" form-type="submit">确认修改</button>
+  </form>
+</view>
