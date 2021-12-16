@@ -5,23 +5,23 @@ let host = getApp().globalData.host
 let app = getApp()
 
 Page({
-  initValidate: function() {
+  initValidate: function () {
     this.validate = new wxValidate({
-        username: {
-          required: true,
-          minlength: 5
-        },
-        password: {
-          required: true
-        }
-      }, {
-        username: {
-          required: '请输入用户名称',
-          minlength: '用户名称至少为6位字符'
-        },
-        password: {
-          required: '请输入密码'
-        }
+      username: {
+        required: true,
+        minlength: 5
+      },
+      password: {
+        required: true
+      }
+    }, {
+      username: {
+        required: '请输入用户名称',
+        minlength: '用户名称至少为6位字符'
+      },
+      password: {
+        required: '请输入密码'
+      }
     })
   },
 
@@ -60,7 +60,7 @@ Page({
     wx.stopPullDownRefresh()
   },
 
-  handleLogin: function(e) {
+  handleLogin: function (e) {
     console.log(e.detail.value)
     // check
     if (!this.validate.checkForm(e)) {
@@ -76,7 +76,7 @@ Page({
     this.sendLoginRequset(inputData)
   },
 
-  sendLoginRequset: function(data) {
+  sendLoginRequset: function (data) {
     let that = this
     console.log(data)
     wx.request({
@@ -86,7 +86,7 @@ Page({
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },
-      success (res) {
+      success(res) {
         console.log(res)
         let data = res.data
         let code = data.status
@@ -97,7 +97,7 @@ Page({
             title: '登录成功',
             icon: 'success',
             duration: 2000,
-            complete () {
+            complete() {
               that.loginSuccessBack(data.data)
             }
           })
@@ -108,7 +108,7 @@ Page({
           })
         }
       },
-      fail (res) {
+      fail(res) {
         wx.showToast({
           title: res.msg == null ? '登录失败, 请稍后重试' : res.msg,
           icon: 'none'
@@ -116,12 +116,14 @@ Page({
       }
     })
   },
-  
-  loginSuccessBack: function(data) {
+
+  loginSuccessBack: function (data) {
     app.globalData.userInfo = data
     console.log(app.globalData.userInfo)
-    wx.navigateBack({
-      delta: 1
-    })
+    setTimeout(() => {
+      wx.navigateBack({
+        delta: 1,
+      })
+    }, 500)
   }
 })

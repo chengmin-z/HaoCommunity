@@ -182,9 +182,11 @@ Page({
   registerSuccessBack: function(data) {
     app.globalData.userInfo = data
     console.log(app.globalData.userInfo)
-    wx.navigateBack({
-      delta: 1
-    })
+    setTimeout(() => {
+      wx.navigateBack({
+        delta: 1,
+      })
+    }, 500)
   },
 
   bindRegionChange: function (e) {

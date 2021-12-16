@@ -1,4 +1,5 @@
 // pages/publish/publish.js
+import {formatDate, formatTime, formatOneMonthLimit} from '../../utils/util.js'
 import wxValidate from '../../utils/wxValidate.js'
 
 let host = getApp().globalData.host
@@ -39,7 +40,7 @@ Page({
    */
   data: {
     taskTypeArray: app.globalData.taskTypeArray,
-    taskType2No: app.globalData.taskType2No,
+    taskTypeNo2Name: app.globalData.taskTypeNo2Name,
     tasktype: 0,
     enddate: '',
     endtime: '',
@@ -53,17 +54,11 @@ Page({
    */
   onLoad: function (options) {
     this.initValidate()
-    let timestamp = Date.parse(new Date())
-    let date = new Date(timestamp)
-    let Y =date.getFullYear()
-    let M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1)
-    let D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
-    let limitEndM = M % 12 + 1
-    let limitEndY = M % 12 ? Y : Y + 1
+    let now = new Date()
     this.setData({
-      enddate: Y + '-' + M + '-' + D,
-      startDateLimit: Y + '-' + M + '-' + D,
-      endDateLimit: limitEndY + '-' + limitEndM + '-' + D,
+      enddate: formatDate(now),
+      startDateLimit: formatDate(now),
+      endDateLimit: formatOneMonthLimit(now),
       endtime: '23:59'
     })
   },
@@ -103,7 +98,7 @@ Page({
     })
     if (this.data.imgPath) {
       wx.uploadFile({
-        filePath: this.data.imgPath == null ? '' : this.data.imgPath,
+        filePath: this.data.imgPath,
         name: 'image',
         formData: inputData,
         url: host + '/task/publish/',
@@ -188,7 +183,7 @@ Page({
     let that = this
     wx.chooseImage({
       count: 1,
-      sizeType: ['original', 'compressed'],
+      sizeType: ['compressed'],
       sourceType: ['album'],
       success (res) {
         const tempFilePaths = res.tempFilePaths
@@ -202,6 +197,7 @@ Page({
 
   bindTaskTypeChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
+
     this.setData({
       tasktype: e.detail.value
     })

@@ -116,11 +116,11 @@ Page({
     })
   },
 
-  sendUserEditRequest: function(data, key) {
+  sendUserEditRequest: function(inputData, key) {
     let that = this
     wx.request({
       url: host + '/home/updateinfo/',
-      data: data,
+      data: inputData,
       method: 'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded',
@@ -128,9 +128,10 @@ Page({
       },
       success (res) {
         let code = res.data.status
+        let data = res.data
         if (code == 200) {
           console.log(res)
-          app.globalData.userInfo[key] = data[key]
+          app.globalData.userInfo[key] = inputData[key]
           that.setData({
             userInfo: app.globalData.userInfo
           })

@@ -11,10 +11,10 @@ Page({
   data: {
     mypubs: null,
     picPrefix: host + '/media/',
-    taskTypeNo2Name: app.globalData.taskType2No, // 变量名称不标准
+    taskTypeNo2Name: app.globalData.taskTypeNo2Name, // 变量名称不标准
     taskStateNo2Name: app.globalData.taskStateNo2Name,
-    color: '#000',
-    taskState2Color: { 0: '#6C87F5', 1: '#6C87F5', 2: '#96A5E5', 3: '#999999', 4: '#999999'}
+    taskState2Color: app.globalData.taskState2Color,
+    firstShow: true,
   },
 
   /**
@@ -24,10 +24,18 @@ Page({
     this.sendQueryMyPubRequest(false)
   },
 
+  onShow: function (options) {
+    if (!this.data.firstShow) {
+      this.sendQueryMyPubRequest(false)
+    }
+    this.data.firstShow = false
+  },
+
   handleShowPubDetail: function(e) {
-    console.log(e.currentTarget.dataset.index)
+    console.log('touch list[' + e.currentTarget.dataset.index + ']')
     let index = e.currentTarget.dataset.index
-    let taskstate = this.data.mypubs[index].state
+    let task = this.data.mypubs[index]
+    let taskstate = task.state
     if (taskstate == 3 || taskstate == 4) {
       wx.showToast({
         title: '任务已' + (taskstate == 3 ? '过期' : '取消'),
@@ -35,7 +43,11 @@ Page({
       })
       return false
     }
-    // todo
+    app.globalData.tempTask = task
+    console.log(app.globalData.tempTask)
+    wx.navigateTo({
+      url: '/pages/mypubdetail/mypubdetail',
+    })
   },
 
   sendQueryMyPubRequest: function(isRefresh) {

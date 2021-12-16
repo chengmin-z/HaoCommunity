@@ -1,0 +1,66 @@
+<!--pages/mypubdetail/mypubdetail.wxml-->
+<!--pages/userinfo/userinfo.wxml-->
+<view class="flexContainer">
+  <view class="avatar-info">
+    <view class="listItem-avatar">
+      <view class="h2Text">
+        {{task.title}}
+      </view>
+      <text class='iconfont icon-edit' bindtap="handleEditTitle"></text>
+    </view>
+  </view>
+  <view class="list">
+    <view class="listItem">
+      <view class="h4Text">任务状态</view>
+      <view class="h5Text" style="color: {{taskState2Color[task.state]}};"> {{ taskStateNo2Name[task.state] }} </view>
+    </view>
+    <view class="listItemLineSpace"></view>
+    <view class="listItem">
+      <view class="h4Text">任务类型</view>
+      <picker class="pickerPreview" bindchange="bindTaskTypeChange" value="{{index}}" range="{{taskTypeArray}}" disabled="{{!canEdit}}">
+        {{taskTypeNo2Name[task.tasktype]}}
+      </picker>
+    </view>
+    <view class="listItemLineSpace"></view>
+    <view class="listItem">
+      <view class="h4Text">所需人数</view>
+      <view class="h5Text"> {{task.neednum}} </view>
+      <text class='iconfont icon-edit' bindtap="handleEditNeednum"></text>
+    </view>
+    <view class="listItemLineSpace"></view>
+    <view class="listItem">
+      <view class="h4Text">任务描述</view>
+      <view class="h5Text"> {{task.description}} </view>
+      <text class='iconfont icon-edit' bindtap="handleEditDescription"></text>
+    </view>
+    <view class="listItemLineSpace"></view>
+    <view class="listItem">
+      <view class="h4Text">到期日期</view>
+      <picker class="pickerPreview" mode="date" start="{{startDateLimit}}" end="{{endDateLimit}}" bindchange="bindDateChange" value="{{enddate}}" disabled="{{!canEdit}}">
+        {{enddate}}
+      </picker>
+    </view>
+    <view class="listItemLineSpace"></view>
+    <view class="listItem">
+      <view class="h4Text">到期时间</view>
+      <picker class="pickerPreview" mode="time" bindchange="bindTimeChange" value="{{endtime}}" disabled="{{!canEdit}}">
+        {{endtime}}
+      </picker>
+    </view>
+    <view class="listItemLineSpace"></view>
+    <view class="listItem" style="height: 70rpx;">
+      <view class="h4Text">图片描述</view>
+      <view class="avatar" wx:if="{{task.image}}">
+        <image class="image" mode="aspectFill" src="{{picPrefix + task.image}}"></image>
+      </view>
+      <button wx:if="{{canEdit}}" class="normalButton" bindtap="changeImage">更改图片</button>
+    </view>
+    <view class="listItemLineSpace"></view>
+    <!-- <view class="listItem">
+      <view class="h4Text">响应/接受/拒绝</view>
+      <view class="h5Text"> {{task.reply.length + '/' + acceptedNum}} </view>
+    </view>
+    <view class="listItemLineSpace"></view> -->
+  </view>
+  <button class="submitButton" hover-class="submitButtonHover" bindtap="handleCancelTask">取消任务</button>
+</view>

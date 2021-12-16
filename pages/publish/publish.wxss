@@ -14,29 +14,6 @@
   text-align: left;
 }
 
-.imgInputContainer {
-  margin-left: 4%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.imgInputContainer .normalButton {
-  height: 60rpx;
-  width: 200rpx;
-  font-size: small;
-  margin-left: 0;
-}
-
-.imgInputContainer .avatar {
-  width: 80rpx;
-  height: 80rpx;
-  border-radius: 0;
-  display: block;
-  margin-right: 2%;
-  border: var(--lightPurpleColor1) solid 3rpx;
-}
-
 .avatar .image {
   display: block;
   border-radius: 0;

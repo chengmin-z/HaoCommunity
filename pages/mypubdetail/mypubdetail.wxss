@@ -1,0 +1,44 @@
+/* pages/mypubdetail/mypubdetail.wxss */
+.avatar-info {
+  margin-top: 25rpx;
+  margin-bottom: 5rpx;
+}
+
+.listItem-avatar {
+  width: 100%;
+  margin-top: 20rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.listItem-avatar .iconfont {
+  margin-left: 2%;
+  text-align: left;
+  font-size: larger;
+  font-weight: bold;
+  color: var(--themeColor);
+}
+
+.listItem .normalButton {
+  height: 60rpx;
+  width: 200rpx;
+  font-size: small;
+  margin-left: 4%;
+}
+
+.listItem .avatar {
+  height: 80rpx;
+  width: 80rpx;
+  margin-left: 4%;
+}
+
+.avatar .image {
+  display: block;
+  border-radius: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.submitButton {
+  margin-top: 40rpx;
+}
