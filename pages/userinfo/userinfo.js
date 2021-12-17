@@ -32,8 +32,9 @@ Page({
    */
   data: {
     userInfo: null,
-    idtypeNo2Name: {},
-    userLevel2Name: {}
+    idtypeNo2Name: app.globalData.idtypeNo2Name,
+    userLevel2Name: app.globalData.userLevel2Name,
+    ismine: true
   },
 
   /**
@@ -41,11 +42,12 @@ Page({
    */
   onLoad: function (options) {
     this.initValidate()
-    console.log(app.globalData.userInfo)
+    console.log(options)
+    let ismine = (options.ismine == 'true')
+    let userdata = ismine ? app.globalData.userInfo : app.globalData.otherUserInfo
     this.setData({
-      userInfo: app.globalData.userInfo,
-      idtypeNo2Name: app.globalData.idtypeNo2Name,
-      userLevel2Name: app.globalData.userLevel2Name
+      userInfo: userdata,
+      ismine: ismine
     })
   },
 
@@ -161,8 +163,10 @@ Page({
    */
   onPullDownRefresh: function () {
     wx.stopPullDownRefresh()
-    this.setData({
-      userInfo: app.globalData.userInfo
-    })
+    if (this.data.ismine) {
+      this.setData({
+        userInfo: app.globalData.userInfo
+      })
+    }
   }
 })

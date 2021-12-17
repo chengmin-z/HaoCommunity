@@ -129,6 +129,18 @@ Page({
     return canEdit
   },
 
+  handleShowReplyUserInfo: function(e) {
+    console.log('touch list[' + e.currentTarget.dataset.index + ']')
+    let index = e.currentTarget.dataset.index
+    let reply = this.data.task.reply[index]
+    let that = this
+    app.globalData.otherUserInfo = reply.user
+    console.log(app.globalData.otherUserInfo)
+    wx.navigateTo({
+      url: '/pages/userinfo/userinfo?ismine=false',
+    })
+  },
+
   handleAcceptReply: function (e) {
     console.log('touch list[' + e.currentTarget.dataset.index + ']')
     let index = e.currentTarget.dataset.index

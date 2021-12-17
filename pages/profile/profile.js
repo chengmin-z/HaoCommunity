@@ -76,7 +76,7 @@ Page({
 
   handleEditUserInfo: function() {
     wx.navigateTo({
-      url: '/pages/userinfo/userinfo',
+      url: '/pages/userinfo/userinfo?ismine=true',
     })
   },
 

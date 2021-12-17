@@ -18,7 +18,7 @@
     <block wx:if="{{task.state == 2}}">
       <view class="listItem">
         <view class="h4Text">中介费用</view>
-        <view class="h5Text">{{ acceptedNum*3 }} 元</view>
+        <view class="h5Text">{{ task.bill[0].pubfee }} 元</view>
       </view>
       <view class="listItemLineSpace"></view>
     </block>
@@ -78,10 +78,11 @@
               <text class='iconfont icon-text'></text>
               <view class="h4Text"> {{item.description}} </view>
             </view>
-            <view class="lineSpacer"></view>
-            <view class="textInfo-line">
+            <view class="lineSpacer"></view> 
+            <view class="textInfo-line" bindtap="handleShowReplyUserInfo" data-index="{{index}}">
               <text class='iconfont icon-people'></text>
-              <view class="h4Text"> {{item.user.realname}} </view>
+              <view class="h4Text"> {{item.user.realname}} {{item.user.username}}</view>
+              <text class='iconfont icon-info' style="color: var(--lightPurpleColor1); margin-left: 5rpx;"></text>
             </view>
           </view>
           <block wx:if="{{task.state != 2 && item.state == 0}}">

@@ -28,31 +28,31 @@
       <view class="h5Text"> {{userInfo.community}} </view>
     </view>
     <view class="listItemLineSpace"></view>
-    <view class="listItem">
+    <view class="listItem" wx:if="{{ismine}}">
       <view class="h4Text">证件类型</view>
       <view class="h5Text"> {{idtypeNo2Name[userInfo.idtype]}} </view>
     </view>
-    <view class="listItemLineSpace"></view>
-    <view class="listItem">
+    <view class="listItemLineSpace" wx:if="{{ismine}}"></view>
+    <view class="listItem" wx:if="{{ismine}}">
       <view class="h4Text">证件号码</view>
       <view class="h5Text"> {{userInfo.idnumber}} </view>
     </view>
-    <view class="listItemLineSpace"></view>
-    <view class="listItem">
+    <view class="listItemLineSpace" wx:if="{{ismine}}"></view>
+    <view class="listItem" wx:if="{{ismine}}">
       <view class="h4Text">会员等级</view>
       <view class="h5Text"> {{userLevel2Name[userInfo.userlevel]}} </view>
     </view>
-    <view class="listItemLineSpace"></view>
+    <view class="listItemLineSpace" wx:if="{{ismine}}"></view>
     <view class="listItem">
       <view class="h4Text">手机号码</view>
       <view class="h5Text"> {{userInfo.phone}} </view>
-      <text class='iconfont icon-edit' bindtap="handleEditPhone"></text>
+      <text class='iconfont icon-edit' wx:if="{{ismine}}" bindtap="handleEditPhone"></text>
     </view>
     <view class="listItemLineSpace"></view>
     <view class="listItem">
       <view class="h4Text">用户简介</view>
       <view class="h5Text"> {{userInfo.description}} </view>
-      <text class='iconfont icon-edit' bindtap="handleEditDescription"></text>
+      <text class='iconfont icon-edit' wx:if="{{ismine}}" bindtap="handleEditDescription"></text>
     </view>
     <view class="listItemLineSpace"></view>
   </view>

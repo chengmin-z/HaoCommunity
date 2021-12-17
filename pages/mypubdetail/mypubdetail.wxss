@@ -104,6 +104,10 @@
   margin-left: 20rpx;
 }
 
+.textInfo-line .h4Text {
+  font-weight: normal;
+}
+
 .textInfo .lineSpacer {
   height: 15rpx;
 }
