@@ -15,6 +15,13 @@
       <view class="h5Text" style="color: {{taskState2Color[task.state]}};"> {{ taskStateNo2Name[task.state] }} </view>
     </view>
     <view class="listItemLineSpace"></view>
+    <block wx:if="{{task.state == 2}}">
+      <view class="listItem">
+        <view class="h4Text">中介费用</view>
+        <view class="h5Text">{{ acceptedNum*3 }} 元</view>
+      </view>
+      <view class="listItemLineSpace"></view>
+    </block>
     <view class="listItem">
       <view class="h4Text">任务类型</view>
       <picker class="pickerPreview" bindchange="bindTaskTypeChange" value="{{index}}" range="{{taskTypeArray}}" disabled="{{!canEdit}}">
@@ -53,14 +60,42 @@
       <view class="avatar" wx:if="{{task.image}}">
         <image class="image" mode="aspectFill" src="{{picPrefix + task.image}}"></image>
       </view>
-      <button wx:if="{{canEdit}}" class="normalButton" bindtap="changeImage">更改图片</button>
+      <button class="normalButton" bindtap="changeImage">更改图片</button>
     </view>
     <view class="listItemLineSpace"></view>
-    <!-- <view class="listItem">
-      <view class="h4Text">响应/接受/拒绝</view>
-      <view class="h5Text"> {{task.reply.length + '/' + acceptedNum}} </view>
+
+    <view class="listHeader">
+      <view class="headerTitle">
+        <view class="h3Text">任务响应 {{task.reply.length + '/' + acceptedNum}}</view>
+        <view class="textBottomLine"></view>
+      </view>
     </view>
-    <view class="listItemLineSpace"></view> -->
+    <view class="list">
+      <view class="replyListItem" wx:for="{{task.reply}}" data-index="{{index}}" wx:key="replyid">
+        <view class="cardContainer">
+          <view class="textInfo">
+            <view class="textInfo-line">
+              <text class='iconfont icon-text'></text>
+              <view class="h4Text"> {{item.description}} </view>
+            </view>
+            <view class="lineSpacer"></view>
+            <view class="textInfo-line">
+              <text class='iconfont icon-people'></text>
+              <view class="h4Text"> {{item.user.realname}} </view>
+            </view>
+          </view>
+          <block wx:if="{{task.state != 2 && item.state == 0}}">
+            <text class='iconfont icon-check' data-index="{{index}}" bindtap="handleAcceptReply"></text>
+            <text class='iconfont icon-close' data-index="{{index}}" bindtap="handleRejectReply"></text>
+          </block>
+          <block wx:else>
+            <view class="replyItemState">
+              <view class="h4Text" style="color: {{replyState2Color[item.state]}};"> {{ replyState2Name[item.state] }} </view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
   </view>
   <button class="submitButton" hover-class="submitButtonHover" bindtap="handleCancelTask">取消任务</button>
 </view>
