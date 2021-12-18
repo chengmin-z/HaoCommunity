@@ -64,15 +64,23 @@ Page({
         let data = res.data
         let code = data.status
         if (code == 200) {
-          data.data.sort((a, b) => {return a.state - b.state});
+          data.data.sort((a, b) => {return a.state - b.state})
+          if (data.data.length == 0) {
+            wx.showToast({
+              title: '暂无发布的任务',
+              icon: 'error'
+            })
+          }
           that.setData({
             mypubs: data.data
           })
           console.log(data.data)
           if (isRefresh) {
+            let title = data.data.length == 0 ? '暂无发布的任务' : '数据刷新成功'
+            let icon = data.data.length == 0 ? 'error' : 'success'
             wx.showToast({
-              title: '数据刷新成功',
-              icon: 'succes'
+              title: title,
+              icon: icon
             })
           }
         } else {

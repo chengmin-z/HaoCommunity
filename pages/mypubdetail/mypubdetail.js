@@ -112,16 +112,27 @@ Page({
     var canEdit = true
     for (let item of this.data.task.reply) {
       if (item.state == 0 || item.state == 1) {
-        canEdit = false;
-        break;
+        canEdit = false
+        break
       }
     }
+    if (this.data.task.state == 2) {
+      canEdit = false
+    }
     if (!isRefresh) {
-      let title = this.data.task.state == 2 ? '任务已完成, 无法更改基本信息' : '有未处理或已接受响应, 无法更改基本信息'
-      wx.showToast({
-        title: title,
-        icon: 'none'
-      })
+      if (this.data.task.state == 2) {
+        wx.showToast({
+          title: '任务已完成, 无法更改基本信息',
+          icon: 'none'
+        })
+      } else {
+        if (!canEdit) {
+          wx.showToast({
+            title: '有未处理或已接受响应, 无法更改基本信息',
+            icon: 'none'
+          })
+        }
+      }
     }
     this.setData({
       canEdit: canEdit
@@ -129,7 +140,7 @@ Page({
     return canEdit
   },
 
-  handleShowReplyUserInfo: function(e) {
+  handleShowReplyUserInfo: function (e) {
     console.log('touch list[' + e.currentTarget.dataset.index + ']')
     let index = e.currentTarget.dataset.index
     let reply = this.data.task.reply[index]
@@ -284,9 +295,6 @@ Page({
         if (res.confirm) {
           let inputdata = {}
           inputdata[key] = value
-          wx.showLoading({
-            title: '正在上传图片',
-          })
           that.sendUpdateTaskInfoRequest(inputdata)
         }
       }
@@ -392,6 +400,9 @@ Page({
   },
 
   sendUpdateTaskImageRequest: function (picPath) {
+    wx.showLoading({
+      title: '正在上传图片',
+    })
     let that = this
     let sendData = {}
     sendData['taskid'] = this.data.task.taskid
@@ -410,7 +421,6 @@ Page({
         let data = JSON.parse(res.data)
         let code = data.status
         if (code == 200) {
-          console.log(data.data)
           that.sendRefreshRequest(false)
           wx.showToast({
             title: '信息修改成功',

@@ -1,5 +1,4 @@
 <!--pages/mypubdetail/mypubdetail.wxml-->
-<!--pages/userinfo/userinfo.wxml-->
 <view class="flexContainer">
   <view class="avatar-info">
     <view class="listItem-avatar">

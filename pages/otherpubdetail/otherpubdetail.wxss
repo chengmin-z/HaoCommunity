@@ -1,4 +1,4 @@
-/* pages/myreply/myreply.wxss */
+/* pages/otherpubdetail/otherpubdetail.wxss */
 .avatar-info {
   margin-top: 25rpx;
   margin-bottom: 5rpx;

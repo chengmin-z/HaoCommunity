@@ -1,0 +1,61 @@
+<!--pages/mypubdetail/mypubdetail.wxml-->
+<view class="flexContainer">
+  <view class="avatar-info">
+    <view class="listItem-avatar">
+      <view class="h2Text">
+        {{task.title}}
+      </view>
+    </view>
+  </view>
+  <view class="list">
+    <view class="listItem">
+      <view class="h4Text">任务状态</view>
+      <view class="h5Text" style="color: {{taskState2Color[task.state]}};"> {{ taskStateNo2Name[task.state] }} </view>
+    </view>
+    <view class="listItemLineSpace"></view>
+    <view class="listItem">
+      <view class="h4Text">任务类型</view>
+      <view class="h5Text">
+        {{taskTypeNo2Name[task.tasktype]}}
+      </view>
+
+    </view>
+    <view class="listItemLineSpace"></view>
+    <view class="listItem">
+      <view class="h4Text">所需人数</view>
+      <view class="h5Text"> {{task.neednum}} </view>
+    </view>
+    <view class="listItemLineSpace"></view>
+    <view class="listItem">
+      <view class="h4Text">任务描述</view>
+      <view class="h5Text"> {{task.description}} </view>
+    </view>
+    <view class="listItemLineSpace"></view>
+    <view class="listItem">
+      <view class="h4Text">到期日期</view>
+      <view class="h5Text">
+        {{enddate}}
+      </view>
+    </view>
+    <view class="listItemLineSpace"></view>
+    <view class="listItem">
+      <view class="h4Text">到期时间</view>
+      <view class="h5Text">
+        {{endtime}}
+      </view>
+    </view>
+    <view class="listItemLineSpace"></view>
+    <view class="listItem" style="height: 70rpx;">
+      <view class="h4Text">图片描述</view>
+      <block wx:if="{{task.image}}">
+        <view class="avatar">
+          <image class="image" mode="aspectFill" src="{{picPrefix + task.image}}"></image>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="h5Text">暂无图片</view>
+      </block>
+    </view>
+    <view class="listItemLineSpace"></view>
+  </view>
+</view>

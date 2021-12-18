@@ -1,1 +1,30 @@
 <!--pages/myreply/myreply.wxml-->
+<view class="flexContainer">
+  <view class="list">
+    <view class="replyListItem" wx:for="{{myreplys}}" data-index="{{index}}" wx:key="replyid">
+      <view class="cardContainer">
+        <view class="textInfo">
+          <view class="textInfo-line">
+            <text class='iconfont icon-text'></text>
+            <view class="h4Text"> {{item.description}} </view>
+            <block wx:if="{{item.task.state == 1 && item.state == 0}}">
+              <text class='iconfont icon-post' style="color: var(--lightPurpleColor1); margin-left: 5rpx;" data-index="{{index}}" bindtap="handleEditReplyDescription"></text>
+            </block>
+          </view>
+          <view class="lineSpacer"></view>
+          <view class="textInfo-line" bindtap="handleShowReplyTaskInfo" data-index="{{index}}">
+            <text class='iconfont icon-tag'></text>
+            <view class="h4Text"> {{item.task.title}} </view>
+            <text class='iconfont icon-info' style="color: var(--grayColor); margin-left: 5rpx;"></text>
+          </view>
+        </view>
+        <block wx:if="{{item.task.state == 1 && item.state == 0}}">
+          <text class='iconfont icon-close' style="color: var(--lightPurpleColor1)" data-index="{{index}}" bindtap="handleCancelReply"></text>
+        </block>
+        <view class="replyItemState">
+          <view class="h4Text" style="color: {{replyState2Color[item.state]}};"> {{ replyState2Name[item.state]}} </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
