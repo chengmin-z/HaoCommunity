@@ -18,19 +18,10 @@ Page({
    */
   onLoad: function (options) {
     // refresh data
-    let that = this
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        username: app.globalData.userInfo.realname,
-        avatar: app.globalData.userInfo.avatar
-      })
-    } else {
-      this.sendGetCurrentUserRequest()
-    }
+    this.sendGetCurrentUserRequest()
   },
 
-  onShow: function() {
+  onShow: function () {
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -46,27 +37,27 @@ Page({
     wx.stopPullDownRefresh()
   },
 
-  handleRegister: function() {
+  handleRegister: function () {
     console.log('Register Button Tap')
     wx.navigateTo({
       url: '/pages/register/register',
     })
   },
 
-  handleLogin: function() {
+  handleLogin: function () {
     console.log('Login Button Tap')
     wx.navigateTo({
       url: '/pages/login/login',
     })
   },
 
-  handleLogout: function() {
+  handleLogout: function () {
     let that = this
     wx.showModal({
       title: '登出确认',
       content: '是否确认登出',
       confirmColor: '#6782F2',
-      success (res) {
+      success(res) {
         if (res.confirm) {
           that.sendLogoutRequset()
         }
@@ -74,14 +65,14 @@ Page({
     })
   },
 
-  handleEditUserInfo: function() {
+  handleEditUserInfo: function () {
     wx.navigateTo({
       url: '/pages/userinfo/userinfo?ismine=true',
     })
   },
 
-  handleShowMyPubPage: function() {
-    if(!app.checkLogin()) {
+  handleShowMyPubPage: function () {
+    if (!app.checkLogin()) {
       return false
     }
     wx.navigateTo({
@@ -89,8 +80,8 @@ Page({
     })
   },
 
-  handleShowMyReplyPage: function() {
-    if(!app.checkLogin()) {
+  handleShowMyReplyPage: function () {
+    if (!app.checkLogin()) {
       return false
     }
     wx.navigateTo({
@@ -98,8 +89,8 @@ Page({
     })
   },
 
-  handleEditPassword: function() {
-    if(!app.checkLogin()) {
+  handleEditPassword: function () {
+    if (!app.checkLogin()) {
       return false
     }
     wx.navigateTo({
@@ -107,35 +98,18 @@ Page({
     })
   },
 
-  sendGetCurrentUserRequest: function() {
+  sendGetCurrentUserRequest: function () {
     let that = this
-    wx.request({
-      url: host + '/home/queryinfo/',
-      method: 'POST',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded',
-        'cookie': app.globalData.cookie
-      },
-      success (res) {
-        console.log(res)
-        let data = res.data
-        let code = data.status
-        if (code == 200) {
-          app.globalData.userInfo = data.data
-          that.setData({
-            userInfo: data.data,
-            username: data.data.realname,
-            avatar: data.data.avatar
-          })
-        }
-      },
-      fail (res) {
-        console.log('reload session failed')
-      }
+    app.reloadSession((userInfo) => {
+      that.setData({
+        userInfo: userInfo,
+        username: userInfo.realname,
+        avatar: userInfo.avatar
+      })
     })
   },
 
-  sendLogoutRequset: function() {
+  sendLogoutRequset: function () {
     let that = this
     wx.request({
       url: host + '/home/logout/',
@@ -144,7 +118,7 @@ Page({
         'content-type': 'application/x-www-form-urlencoded',
         'cookie': app.globalData.cookie
       },
-      success (res) {
+      success(res) {
         console.log(res)
         let data = res.data
         let code = data.status
@@ -168,7 +142,7 @@ Page({
           })
         }
       },
-      fail (res) {
+      fail(res) {
         wx.showToast({
           title: res.msg == null ? '登出失败, 请稍后重试' : res.msg,
           icon: 'none'

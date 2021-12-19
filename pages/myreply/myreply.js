@@ -88,7 +88,7 @@ Page({
     let task = reply.task
     app.globalData.tempReplyTask = task
     wx.navigateTo({
-      url: '/pages/otherpubdetail/otherpubdetail?replyid=' + reply.replyid,
+      url: '/pages/otherpubdetail/otherpubdetail?source=myreply&replyid=' + reply.replyid,
     })
   },
 

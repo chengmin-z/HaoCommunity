@@ -1,1 +1,55 @@
 <!--pages/index/index.wxml-->
+<view class="flexContainer">
+  <view class="listHeader">
+    <view class="headerTitle">
+      <view class="h3Text">社区名称: {{userInfo.community == null ? '暂未登录':userInfo.community}}</view>
+      <view class="textBottomLine"></view>
+    </view>
+    <form class="normalForm">
+      <custom-comp>
+        <view class="formItem">
+          <view class="inputContainer">
+            <text class='iconfont icon-tag'></text>
+            <input class="input" name="title" bindinput="bindTaskNameInput" placeholder="任务名称筛选"/>
+          </view>
+        </view>
+        <view class="formItem">
+          <view class="inputContainer">
+            <text class='iconfont icon-list'></text>
+            <picker class="pickerPreview" bindchange="bindTaskTypeChange" value="{{index}}" range="{{taskTypeArray}}">
+              {{taskTypeArray[taskmatchtype]}}
+            </picker>
+          </view>
+        </view>
+      </custom-comp>
+    </form>
+  </view>
+  <view class="list">
+    <view class="taskListItem" wx:for="{{showTasks}}" data-index="{{index}}" wx:key="taskid" bindtap="handleShowTaskInfo">
+      <view class="cardContainer">
+        <view class="taskBasicInfo">
+          <view class="taskBasicInfoHead">
+            <view class="h3Text"> {{item.title}} </view>
+            <view class="h4Text" style="color: {{taskState2Color[item.state]}};"> {{ taskStateNo2Name[item.state] }} </view>
+          </view>
+          <view class="taskBasicOverView">
+            <view class="basicItem">
+              <text class='iconfont icon-list'></text>
+              <view class="h5Text"> {{ taskTypeNo2Name[item.tasktype] }} </view>
+            </view>
+            <view class="basicItem">
+              <text class='iconfont icon-friend'></text>
+              <view class="h5Text"> 需求/响应 </view>
+              <view class="h5Text"> {{ item.neednum + '/' + item.reply.length }} </view>
+            </view>
+          </view>
+        </view>
+        <view class="taskListItem-pic">
+          <view class="pic">
+            <image wx:if="{{item.image != ''}}" class="image" mode="aspectFill" src="{{picPrefix + item.image}}"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

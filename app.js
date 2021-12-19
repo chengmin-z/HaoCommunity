@@ -1,12 +1,10 @@
 // app.js
 App({
   onLaunch() {
-    this.reloadSession()
+    this.reloadSession((res)=>{})
   },
-  checkLogin: function() {
-    if (this.globalData.userInfo) {
-      return true
-    }
+
+  showLoginModal: function() {
     wx.showModal({
       title: '用户未登录',
       content: '是否重新登录',
@@ -19,9 +17,20 @@ App({
         }
       }
     })
+  },
+
+  checkLogin: function() {
+    if (this.globalData.userInfo) {
+      return true
+    }
+    this.showLoginModal()
     return false
   },
-  reloadSession: function() {
+
+  reloadSession: function(successCall) {
+    if (this.globalData.userInfo != null) {
+      return false
+    }
     let that = this
     wx.request({
       url: this.globalData.host + '/home/queryinfo/',
@@ -36,10 +45,13 @@ App({
         let code = data.status
         if (code == 200) {
           that.globalData.userInfo = data.data
+          successCall(that.globalData.userInfo)
+        } else {
+          that.showLoginModal()
         }
       },
       fail (res) {
-        console.log('reload session failed')
+        this.showLoginModal()
       }
     })
   },
@@ -47,11 +59,12 @@ App({
     host: 'https://8.141.51.178',
     userInfo: null,
     otherUserInfo: null,
-    cookie: 'sessionid=l9yi3f53b10w13m7f07v11vqzhg10dxj; expires=Sat 01 Jan 2022 08:32:24 GMT; HttpOnly; Max-Age=1209600; Path=/; SameSite=Lax',
+    cookie: 'sessionid=d29fck5t912hyjspjy41p4v0x2vfyl9n; expires=Sun 02 Jan 2022 16:05:43 GMT; HttpOnly; Max-Age=1209600; Path=/; SameSite=Lax',
     idtypeName: ['居民身份证', '护照', '港澳居民来往内地通行证', '台湾居民来往大陆通行证', '外国人永久居留身份证'],
     idtypeNo2Name: {0:'居民身份证', 1:'护照', 2:'港澳居民来往内地通行证', 3:'台湾居民来往大陆通行证', 4:'外国人永久居留身份证'},
     userLevel2Name: {0:'普通用户', 1:'VIP会员'},
     taskTypeArray: ['小时工', '搬重物', '上下班搭车', '社区服务志愿者', '其他'],
+    taskMatchTypeArray: ['小时工', '搬重物', '上下班搭车', '社区服务志愿者', '其他', '全部类型'],
     taskTypeNo2Name: {0: '小时工', 1: '搬重物', 2: '上下班搭车', 3: '社区服务志愿者', 1000: '其他'},
     taskStateNo2Name: {0: '进行中', 1: '进行中', 2: '已完成', 3: '已过期', 4: '已取消'},
     tempTask: null,

@@ -1,5 +1,36 @@
 /* pages/mypub/mypub.wxss */
 
+.flexContainer .listHeader {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  height: 150rpx;
+  background-color: white;
+  width: 100%;
+}
+
+.flexContainer .list {
+  margin-top: 150rpx;
+}
+
+.listHeader .headerTitle {
+  margin-top: 20rpx;
+  margin-left: 4%;
+  flex-direction: column;
+}
+
+.listHeader .formItem {
+  height: 40rpx;
+}
+
+.headerTitle .h3Text {
+  width: fit-content;
+  font-weight: bold;
+  margin-left: 0;
+  text-align: left;
+  border-bottom: var(--lightPurpleColor1) solid 6px;
+}
+
 .taskListItem {
   height: 170rpx;
   width: 100%;

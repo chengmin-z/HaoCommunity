@@ -1,10 +1,10 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/profile/profile",
     "pages/myreply/myreply",
     "pages/mypub/mypub",
     "pages/publish/publish",
-    "pages/index/index",
     "pages/userinfo/userinfo",
     "pages/login/login",
     "pages/register/register",

@@ -5,94 +5,124 @@ let host = getApp().globalData.host
 let app = getApp()
 
 Page({
-  initValidate: function() {
+  initValidate: function () {
     this.validate = new wxValidate({
-        username: {
-          required: true,
-          minlength: 6
-        },
-        password: {
-          required: true,
-          minlength: 6
-        },
-        passwordRe: {
-          required: true,
-          equalTo: 'password'
-        },
-        realname: {
-          required: true,
-        },
-        idnumber: {
-          required: true,
-        },
-        phone: {
-          required: true,
-          tel: true
-        },
-        community: {
-          required: true,
-        }
-      }, {
-        username: {
-          required: '请输入用户名称',
-          minlength: '用户名称至少为6位字符'
-        },
-        password: {
-          required: '请输入密码',
-          minlength: '密码长度至少为6位'
-        },
-        passwordRe: {
-          required: '请输入确认密码',
-          equalTo: '确认密码输入不一致'
-        },
-        realname: {
-          required: '请输入真实姓名',
-        },
-        idnumber: {
-          required: '请输入证件号码',
-        },
-        phone: {
-          required: '请输入手机号码',
-          tel: '请输入11位手机号码'
-        },
-        community: {
-          required: '请输入社区名称',
-        }
+      username: {
+        required: true,
+        minlength: 6
+      },
+      password: {
+        required: true,
+        minlength: 6,
+        minDigitContain: 2,
+        containLowerAndUpper: true
+      },
+      passwordRe: {
+        required: true,
+        equalTo: 'password'
+      },
+      realname: {
+        required: true,
+      },
+      idnumber: {
+        required: true,
+      },
+      phone: {
+        required: true,
+        tel: true
+      },
+      community: {
+        required: true,
+      }
+    }, {
+      username: {
+        required: '请输入用户名称',
+        minlength: '用户名称至少为6位字符'
+      },
+      password: {
+        required: '请输入密码',
+        minlength: '密码长度至少为6位',
+        minDigitContain: '密码至少包含2个数字',
+        containLowerAndUpper: '密码必须包含大小写'
+      },
+      passwordRe: {
+        required: '请输入确认密码',
+        equalTo: '确认密码输入不一致'
+      },
+      realname: {
+        required: '请输入真实姓名',
+      },
+      idnumber: {
+        required: '请输入证件号码',
+      },
+      phone: {
+        required: '请输入手机号码',
+        tel: '请输入11位手机号码'
+      },
+      community: {
+        required: '请输入社区名称',
+      }
     })
+
+    this.validate.addMethod('minDigitContain', (value, param) => {
+      var sum = 0
+      var arr = value.split('')
+      for (var i in arr) {
+        var a = Number(arr[i]);
+        if (a >= 0 && a <= 9) {
+          sum++;
+        }
+      }
+      if (sum >= param) return true
+      else return false
+    }, '')
+
+    this.validate.addMethod('containLowerAndUpper', (value, param) => {
+      if (!param) return true
+      var hasUpper = false
+      var hasLower = false
+      var arr = value.split('')
+      for (var i in arr) {
+        var a = Number(arr[i]);
+        if (!(a >= 0 && a <= 9)) {
+          if (arr[i] == arr[i].toUpperCase()) {
+            hasUpper = true
+            console.log('has upper')
+          }
+          if (arr[i] == arr[i].toLowerCase()) {
+            hasLower = true
+            console.log('has lower')
+          }
+          if (hasLower && hasUpper) {
+            break
+          }
+        }
+      }
+      return hasLower && hasUpper
+    }, '')
+
     this.validateIdNum = new wxValidate({
-        idnumber: {
-          idcard: true
-        }
-      }, {
-        idnumber: {
-          idcard: '请输入18位居民身份证号',
-        }
+      idnumber: {
+        idcard: true
+      }
+    }, {
+      idnumber: {
+        idcard: '请输入18位居民身份证号',
+      }
     })
   },
-  /**
-   * Page initial data
-   */
+
   data: {
     idtypeArray: app.globalData.idtypeName,
     region: ['北京市', '北京市', '海淀区'],
     idtype: 0
   },
 
-  /**
-   * Lifecycle function--Called when page load
-   */
   onLoad: function (options) {
     this.initValidate()
   },
 
-  /**
-   * Lifecycle function--Called when page is initially rendered
-   */
-  onReady: function () {
-
-  },
-
-  handleRegister: function(e) {
+  handleRegister: function (e) {
     console.log(e.detail.value)
 
     // check
@@ -105,7 +135,7 @@ Page({
       })
       return false
     }
-    if(this.data.idtype == 0 && !this.validateIdNum.checkForm(e)) {
+    if (this.data.idtype == 0 && !this.validateIdNum.checkForm(e)) {
       const error = this.validateIdNum.errorList[0];
       console.log(error)
       wx.showToast({
@@ -138,7 +168,7 @@ Page({
     })
   },
 
-  sendRegisterRequset: function(data) {
+  sendRegisterRequset: function (data) {
     console.log(data)
     let that = this
     wx.request({
@@ -148,7 +178,7 @@ Page({
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },
-      success (res) {
+      success(res) {
         let data = res.data
         let code = data.status
         console.log(data)
@@ -159,7 +189,7 @@ Page({
             title: '注册成功',
             icon: 'success',
             duration: 2000,
-            complete () {
+            complete() {
               that.registerSuccessBack(data.data)
             }
           })
@@ -170,7 +200,7 @@ Page({
           })
         }
       },
-      fail (res) {
+      fail(res) {
         wx.showToast({
           title: res.msg == null ? '注册失败, 请稍后重试' : res.msg,
           icon: 'none'
@@ -179,7 +209,7 @@ Page({
     })
   },
 
-  registerSuccessBack: function(data) {
+  registerSuccessBack: function (data) {
     app.globalData.userInfo = data
     console.log(app.globalData.userInfo)
     setTimeout(() => {
@@ -203,24 +233,7 @@ Page({
     })
   },
 
-  /**
-   * Page event handler function--Called when user drop down
-   */
   onPullDownRefresh: function () {
     wx.stopPullDownRefresh()
-  },
-
-  /**
-   * Called when page reach bottom
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * Called when user click on the top right corner to share
-   */
-  onShareAppMessage: function () {
-
   }
 })

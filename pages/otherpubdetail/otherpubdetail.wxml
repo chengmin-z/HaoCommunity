@@ -18,7 +18,6 @@
       <view class="h5Text">
         {{taskTypeNo2Name[task.tasktype]}}
       </view>
-
     </view>
     <view class="listItemLineSpace"></view>
     <view class="listItem">
@@ -26,6 +25,11 @@
       <view class="h5Text"> {{task.neednum}} </view>
     </view>
     <view class="listItemLineSpace"></view>
+    <view class="listItem" wx:if="{{source == 'index'}}">
+      <view class="h4Text">响应接受</view>
+      <view class="h5Text"> {{acceptedNum}}/{{task.reply.length}} </view>
+    </view>
+    <view class="listItemLineSpace" wx:if="{{source == 'index'}}"></view>
     <view class="listItem">
       <view class="h4Text">任务描述</view>
       <view class="h5Text"> {{task.description}} </view>
@@ -57,5 +61,6 @@
       </block>
     </view>
     <view class="listItemLineSpace"></view>
+    <button class="submitButton" wx:if="{{source == 'index'}}" hover-class="submitButtonHover" bindtap="handleReplyTask">响应任务</button>
   </view>
 </view>

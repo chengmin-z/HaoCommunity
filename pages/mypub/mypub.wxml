@@ -1,7 +1,27 @@
 <!--pages/mypub/mypub.wxml-->
 <view class="flexContainer">
+  <view class="listHeader">
+    <form class="normalForm">
+      <custom-comp>
+        <view class="formItem">
+          <view class="inputContainer">
+            <text class='iconfont icon-tag'></text>
+            <input class="input" name="title" bindinput="bindTaskNameInput" placeholder="任务名称筛选" />
+          </view>
+        </view>
+        <view class="formItem">
+          <view class="inputContainer">
+            <text class='iconfont icon-list'></text>
+            <picker class="pickerPreview" bindchange="bindTaskTypeChange" value="{{index}}" range="{{taskTypeArray}}">
+              {{taskTypeArray[taskmatchtype]}}
+            </picker>
+          </view>
+        </view>
+      </custom-comp>
+    </form>
+  </view>
   <view class="list">
-    <view class="taskListItem" wx:for="{{mypubs}}" data-index="{{index}}" wx:key="taskid" bindtap="handleShowPubDetail">
+    <view class="taskListItem" wx:for="{{showTasks}}" data-index="{{index}}" wx:key="taskid" bindtap="handleShowPubDetail">
       <view class="cardContainer">
         <view class="taskBasicInfo">
           <view class="taskBasicInfoHead">
