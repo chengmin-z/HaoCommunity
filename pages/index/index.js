@@ -23,7 +23,6 @@ Page({
     })
     this.sendGetCurrentUserRequest()
     this.sendCommunityTaskRequest(false)
-    console.log(this.data)
   },
 
   bindTaskTypeChange: function (e) {

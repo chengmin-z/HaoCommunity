@@ -51,7 +51,7 @@ App({
         }
       },
       fail (res) {
-        this.showLoginModal()
+        that.showLoginModal()
       }
     })
   },
@@ -59,7 +59,7 @@ App({
     host: 'https://8.141.51.178',
     userInfo: null,
     otherUserInfo: null,
-    cookie: 'sessionid=d29fck5t912hyjspjy41p4v0x2vfyl9n; expires=Sun 02 Jan 2022 16:05:43 GMT; HttpOnly; Max-Age=1209600; Path=/; SameSite=Lax',
+    cookie: 'sessionid=3acdqvck29sa76ituwneeft08vyu7oq9; expires=Fri 07 Jan 2022 12:02:13 GMT; HttpOnly; Max-Age=1209600; Path=/; SameSite=Lax',
     idtypeName: ['居民身份证', '护照', '港澳居民来往内地通行证', '台湾居民来往大陆通行证', '外国人永久居留身份证'],
     idtypeNo2Name: {0:'居民身份证', 1:'护照', 2:'港澳居民来往内地通行证', 3:'台湾居民来往大陆通行证', 4:'外国人永久居留身份证'},
     userLevel2Name: {0:'普通用户', 1:'VIP会员'},
