@@ -20,6 +20,7 @@ App({
   },
 
   checkLogin: function() {
+    console.log('check login')
     if (this.globalData.userInfo) {
       return true
     }
@@ -47,6 +48,7 @@ App({
           that.globalData.userInfo = data.data
           successCall(that.globalData.userInfo)
         } else {
+          console.log('not equal 200')
           that.showLoginModal()
         }
       },
@@ -59,7 +61,7 @@ App({
     host: 'https://8.141.51.178',
     userInfo: null,
     otherUserInfo: null,
-    cookie: 'sessionid=3acdqvck29sa76ituwneeft08vyu7oq9; expires=Fri 07 Jan 2022 12:02:13 GMT; HttpOnly; Max-Age=1209600; Path=/; SameSite=Lax',
+    cookie: '',
     idtypeName: ['居民身份证', '护照', '港澳居民来往内地通行证', '台湾居民来往大陆通行证', '外国人永久居留身份证'],
     idtypeNo2Name: {0:'居民身份证', 1:'护照', 2:'港澳居民来往内地通行证', 3:'台湾居民来往大陆通行证', 4:'外国人永久居留身份证'},
     userLevel2Name: {0:'普通用户', 1:'VIP会员'},

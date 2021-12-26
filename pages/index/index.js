@@ -21,7 +21,6 @@ Page({
     this.setData({
       taskmatchtype: this.data.taskTypeArray.length - 1
     })
-    this.sendGetCurrentUserRequest()
     this.sendCommunityTaskRequest(false)
   },
 
@@ -84,15 +83,6 @@ Page({
     app.globalData.tempCommunityTask = task
     wx.navigateTo({
       url: '/pages/otherpubdetail/otherpubdetail?source=index',
-    })
-  },
-
-  sendGetCurrentUserRequest: function () {
-    let that = this
-    app.reloadSession((userInfo) => {
-      that.setData({
-        userInfo: userInfo
-      })
     })
   },
 
